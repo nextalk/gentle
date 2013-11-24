@@ -1,0 +1,19 @@
+{
+	"name": "gentle",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": ">=3.0",
+		"jade": "*"
+	},
+	"devDependencies": {
+		"grunt": "*",
+		"grunt-contrib-uglify": "*",
+		"grunt-contrib-concat": "*",
+		"grunt-contrib-copy": "*",
+		"grunt-contrib-cssmin": "*"
+	}
+}

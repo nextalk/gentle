@@ -1,0 +1,9 @@
+[submodule "components/bootstrap-datetimepicker"]
+	path = components/bootstrap-datetimepicker
+	url = https://github.com/smalot/bootstrap-datetimepicker.git
+[submodule "components/bootstrap"]
+	path = components/bootstrap
+	url = https://github.com/twbs/bootstrap.git
+[submodule "components/jquery"]
+	path = components/jquery
+	url = https://github.com/components/jquery.git
