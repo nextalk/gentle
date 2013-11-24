@@ -33,8 +33,14 @@ module.exports = function( grunt ) {
 				report: 'min'
 			},
 			js: {
-				src: ['<%= concat.js.dest %>'],
-				dest: 'public/js/base.min.js'
+				options: {
+					sourceMap: 'public/js/base.min.map',
+					sourceMappingURL: "base.min.map",
+					sourceMapPrefix: 2
+				},
+				files: {
+					'public/js/base.min.js': ['<%= concat.js.dest %>']
+				}
 			}
 		},
 		cssmin: {
