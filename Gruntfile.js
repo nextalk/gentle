@@ -37,12 +37,29 @@ module.exports = function( grunt ) {
 				dest: 'public/js/base.min.js'
 			}
 		},
+		cssmin: {
+			options: {
+				banner: '<%= banner %>',
+				report: 'min'
+			},
+			css: {
+				files: {
+					'public/css/base.min.css': ['<%= concat.css.dest %>']
+				}
+			}
+		},
 		copy: {
 			fonts: {
 				expand: true,
 				cwd: "components/bootstrap/dist/",
 				src: ["fonts/*"],
 				dest: 'public'
+			},
+			"bootstrap-datetimepicker-locales": {
+				expand: true,
+				cwd: "components/bootstrap-datetimepicker/js/",
+				src: ["locales/*"],
+				dest: 'public/js'
 			}
 		},
 
@@ -53,7 +70,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( "grunt-contrib-copy" );
 	grunt.loadNpmTasks( "grunt-contrib-cssmin" );
 
-	grunt.registerTask('dist', ['concat', 'uglify', 'copy']);
+	grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy']);
 
 };
 
