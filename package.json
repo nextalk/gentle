@@ -10,6 +10,8 @@
 		"jade": "*"
 	},
 	"devDependencies": {
+		"mocha": "*",
+		"should": "*",
 		"grunt": "*",
 		"grunt-contrib-uglify": "*",
 		"grunt-contrib-concat": "*",
