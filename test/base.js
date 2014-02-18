@@ -26,17 +26,21 @@ describe('config', function() {
 describe('child', function() {
 	it('should add child', function(){
 		var base = new defaultClass();
-		var child = base.child( "admin", { name: "Admin", type: "m" } );
+		var child = base.child( "admin", { alias: "Admin", type: "m" } );
 		child.child.should.be.a.Function;
-		child.name.should.be.equal( "Admin" );
+		child.name.should.be.equal( "admin" );
+		child.config("alias").should.be.equal( "Admin" );
 		child.config("type").should.be.equal( "m" );
 
-		var child2 = base.child( "blog", { name: "Blog" } );
-		child2.name.should.be.equal( "Blog" );
+		var child2 = base.child( "blog", { alias: "Blog" } );
+		child2.config("alias").should.be.equal( "Blog" );
 
-		var child3 = base.child( child, { name: "Admin2" } );
-		child3.name.should.be.equal( "Admin2" );
+		var child3 = base.child( child, { alias: "Admin2" } );
+		child3.config("alias").should.be.equal( "Admin2" );
 		child3.should.be.equal( child );
+
+		var child4 = base.child( "blog" );
+		child4.should.be.equal( child2 );
 
 	});
 });
