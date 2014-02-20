@@ -16,15 +16,15 @@ module.exports = function( grunt ) {
 					"components/bootstrap/dist/js/bootstrap.js",
 					"components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"
 				],
-				dest: "public/js/base.js"
+				dest: "public/static/js/base.js"
 			},
 			css: {
 				src: [
 					"components/bootstrap/dist/css/bootstrap.css",
-					"components/bootstrap/dist/css/bootstrap-theme.css",
-					"components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"
+					"components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css",
+					"components/Font-Awesome/css/font-awesome.css"
 				],
-				dest: "public/css/base.css"
+				dest: "public/static/css/base.css"
 			}
 		},
 		uglify: {
@@ -34,12 +34,12 @@ module.exports = function( grunt ) {
 			},
 			js: {
 				options: {
-					sourceMap: 'public/js/base.min.map',
+					sourceMap: 'public/static/js/base.min.map',
 					sourceMappingURL: "base.min.map",
 					sourceMapPrefix: 2
 				},
 				files: {
-					'public/js/base.min.js': ['<%= concat.js.dest %>']
+					'public/static/js/base.min.js': ['<%= concat.js.dest %>']
 				}
 			}
 		},
@@ -50,22 +50,34 @@ module.exports = function( grunt ) {
 			},
 			css: {
 				files: {
-					'public/css/base.min.css': ['<%= concat.css.dest %>']
+					'public/static/css/base.min.css': ['<%= concat.css.dest %>']
 				}
 			}
 		},
 		copy: {
-			fonts: {
+			"bootstrap-theme":{
+				expand: true,
+				cwd: "components/bootstrap/dist/css/",
+				src: ["bootstrap-theme.css"],
+				dest: 'public/static/css'
+			},
+			"bootstrap-fonts": {
 				expand: true,
 				cwd: "components/bootstrap/dist/",
 				src: ["fonts/*"],
-				dest: 'public'
+				dest: 'public/static'
+			},
+			"Font-Awesome-fonts": {
+				expand: true,
+				cwd: "components/Font-Awesome/",
+				src: ["fonts/*"],
+				dest: 'public/static'
 			},
 			"bootstrap-datetimepicker-locales": {
 				expand: true,
 				cwd: "components/bootstrap-datetimepicker/js/",
 				src: ["locales/*"],
-				dest: 'public/js'
+				dest: 'public/static/js'
 			}
 		},
 
@@ -75,7 +87,6 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( "grunt-contrib-concat" );
 	grunt.loadNpmTasks( "grunt-contrib-copy" );
 	grunt.loadNpmTasks( "grunt-contrib-cssmin" );
-
 	grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy']);
 
 };
