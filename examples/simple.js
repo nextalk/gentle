@@ -5,10 +5,15 @@ var app = gentle( config.mysql + "mysql" );
 
 app.set('db url',  config.mysql + "mysql");
 app.set('secret', "wnweix32");
-//app.set('auth', {username:"", password:""});
+app.set('auth', {username:"root", password:"111111"});
+
 app.config();
 
 app.get("/", function(req,res){
+	res.render("index");
+});
+
+app.get("/my", app.ensureAuthenticated, function(req,res){
 	res.render("index");
 });
 
