@@ -14,7 +14,9 @@ module.exports = function( grunt ) {
 				src: [
 					"components/jquery/jquery.js",
 					"components/bootstrap/dist/js/bootstrap.js",
-					"components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"
+					"components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js",
+					"components/bootstrap-modal/js/bootstrap-modalmanager.js",
+					"components/bootstrap-modal/js/bootstrap-modal.js",
 				],
 				dest: "public/static/js/base.js"
 			},
@@ -22,6 +24,8 @@ module.exports = function( grunt ) {
 				src: [
 					"components/bootstrap/dist/css/bootstrap.css",
 					"components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css",
+					"components/bootstrap-modal/css/bootstrap-modal-bs3patch.css",
+					"components/bootstrap-modal/css/bootstrap-modal.css",
 					"components/Font-Awesome/css/font-awesome.css"
 				],
 				dest: "public/static/css/base.css"

@@ -10,3 +10,6 @@
 [submodule "components/Font-Awesome"]
 	path = components/Font-Awesome
 	url = https://github.com/FortAwesome/Font-Awesome.git
+[submodule "components/bootstrap-modal"]
+	path = components/bootstrap-modal
+	url = https://github.com/jschr/bootstrap-modal.git
