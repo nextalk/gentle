@@ -3,7 +3,11 @@ var gentle = require('../')
 
 describe('app', function() {
 	it('should support mysql', function(){
-		var app = gentle( config.mysql + "mysql" );
+		var app = gentle();
+		app.set('db url',  config.mysql + "mysql");
+		app.set('secret', "wnweix32");
+		app.set('auth', {username:"", password:""});
+		app.config();
 	});
 });
 

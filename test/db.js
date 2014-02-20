@@ -1,11 +1,12 @@
 var gentle = require('../')
   , should = require("should")
   , db = require('../lib/db.js')
-  , mysql = require('../lib/db/mysql.js');
+  , mysql = require('../lib/db/mysql.js')
+  , config =require('../config.js');
 
 describe('mysql', function() {
 	it('should add table', function(){
-		var mydb = new mysql("mysql://localhost/mysql");
+		var mydb = new mysql(config.mysql);
 		var _admin;
 		var admin = mydb.table("admin", "Adm", {
 			per_size: 30

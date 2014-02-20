@@ -7,8 +7,11 @@
 	},
 	"dependencies": {
 		"express": ">=3.0",
+		"connect-flash": "*",
 		"mysql": "*",
-		"jade": "*"
+		"jade": "*",
+		"passport": "*",
+		"passport-local": "*"
 	},
 	"devDependencies": {
 		"mocha": "*",
@@ -18,5 +21,8 @@
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-copy": "*",
 		"grunt-contrib-cssmin": "*"
-	}
+	},
+	"main": "./index.js"
 }
+
+
