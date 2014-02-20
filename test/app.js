@@ -6,8 +6,7 @@ describe('app', function() {
 		var app = gentle();
 		app.set('db url',  config.mysql + "mysql");
 		app.set('secret', "wnweix32");
-		app.set('auth', {username:"", password:""});
-		app.config();
+		app.set('auth', {username:"root", password:"pass"});
 	});
 });
 
