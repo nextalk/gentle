@@ -1,11 +1,11 @@
 var gentle = require('../')
   , config = require('../config.js');
 
-var app = gentle( config.mysql + "mysql" );
+var app = gentle();
 
 app.set('db url',  config.mysql + "mysql");
-app.set('secret', "wnweix32");
-app.set('auth', {username:"root", password:"111111"});
+app.set('secret', "mysecret-123");
+app.set('auth', {username:"demo", password:"demo"});
 
 app.config();
 
