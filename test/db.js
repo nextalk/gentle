@@ -74,14 +74,13 @@ describe('mysql', function() {
 			});
 		});
 		it('should load tables info for database', function( done ){
-			db.loadTables(function(err, tables){
+			db.load( function( err ) {
 				if( err )
 					throw err;
-				tables.should.be.an.Array;
-				//tables[1].name.should.be.eql('posts');
-				//tables[1].alias.should.be.eql('Post');
+				var post = db.table("posts");
+				post.alias.should.be.equal("Post");
 				done();
-			});
+			} );
 		});
 		it('should load table schema for database', function( done ){
 			db.loadTable("posts", function(err, table){

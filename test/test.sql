@@ -53,7 +53,7 @@ CREATE TABLE `posts` (
   `content` blob,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Post';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Post//My blog posts';
 
 
 
