@@ -79,7 +79,12 @@ describe('mysql', function() {
 					throw err;
 				var post = db.table("posts");
 				post.alias.should.be.equal("Post");
-				done();
+				post.load( function( err ) {
+					if( err )
+						throw err;
+					console.log( db );
+					done();
+				} );
 			} );
 		});
 		it('should load table schema for database', function( done ){
