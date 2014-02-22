@@ -11,15 +11,6 @@ app.config();
 
 var db = app.db;
 
-db.loadTables(function(err, tables){
-	//console.log( err, tables );
-});
-
-db.loadTable("posts", function(err, table){
-	//gentle.log( err );
-	//gentle.log( table );
-});
-
 app.get("/", function(req,res){
 	res.render("index");
 });

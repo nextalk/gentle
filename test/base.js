@@ -3,7 +3,11 @@ var gentle = require('../')
   , base = require('../lib/base.js');
 
 var defaultClass = function(){};
-defaultClass.prototype = base;
+defaultClass.prototype = {
+	__proto__: base
+};
+
+defaultClass.prototype.attr("alias");
 
 describe('config', function() {
 	it('should set/get', function(){
@@ -16,10 +20,10 @@ describe('config', function() {
 	});
 	it('should set default value', function(){
 		var base = new defaultClass();
-		base.attrs = ["name", "alias"];
 		base.default("def", 1).config("def").should.be.equal(1);
 		base.config("def2", 1).default("def2", 3).config("def2").should.be.equal(1);
 		base.default("alias", 1).alias.should.be.equal(1);
+		base.default("alias", 2).alias.should.be.equal(2);
 	});
 });
 
@@ -28,7 +32,7 @@ describe('child', function() {
 		var base = new defaultClass();
 		var child = base.child( "admin", { alias: "Admin", type: "m" } );
 		child.child.should.be.a.Function;
-		child.name.should.be.equal( "admin" );
+		child.config("name").should.be.equal( "admin" );
 		child.config("alias").should.be.equal( "Admin" );
 		child.config("type").should.be.equal( "m" );
 

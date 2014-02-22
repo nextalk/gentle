@@ -59,6 +59,9 @@ describe('mysql', function() {
 
 		var blog = mydb.table("blog");
 		blog.alias.should.be.equal("Blog");
+
+		mydb.hasTable("blog").should.be.true;
+		mydb.hasTable("blog1").should.be.false;
 	});
 
 	describe('connect', function() {
