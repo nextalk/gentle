@@ -82,7 +82,6 @@ describe('mysql', function() {
 				post.load( function( err ) {
 					if( err )
 						throw err;
-					console.log( db );
 					done();
 				} );
 			} );
