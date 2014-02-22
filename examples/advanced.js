@@ -12,12 +12,12 @@ app.config();
 var db = app.db;
 
 db.loadTables(function(err, tables){
-	console.log( err, tables );
+	//console.log( err, tables );
 });
 
 db.loadTable("posts", function(err, table){
-	gentle.log( err );
-	gentle.log( table );
+	//gentle.log( err );
+	//gentle.log( table );
 });
 
 app.get("/", function(req,res){
@@ -32,3 +32,5 @@ if ( !module.parent ) {
 	app.listen(3333);
 	console.log('Gentle app started on port 3333');
 }
+
+
