@@ -18,7 +18,7 @@ html(lang='en')
     .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
       .container
         .navbar-header
-          a.navbar-brand(href="/")= brand_name
+          a.navbar-brand(href=urlFor("/"))= brand_name
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             each t in tables
@@ -29,10 +29,10 @@ html(lang='en')
              li 
                a(href="#")= username
              li
-               a(href="/logout") Logout
+               a(href=urlFor("/logout")) Logout
             else
              li
-               a(href="/login") Login
+               a(href=urlFor("/login")) Login
 
     .container(role="main")
       block content
