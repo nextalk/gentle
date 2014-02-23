@@ -1,2 +1,6 @@
 mixin test
   div Test mixin
+mixin link(src)
+  link(href=urlFor("/static/css/"+src), rel='stylesheet')
+mixin script(src)
+  script(src=urlFor('/static/js/'+src), type='text/javascript')

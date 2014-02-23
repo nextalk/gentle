@@ -1,4 +1,5 @@
 var gentle = require('../')
+  , express = require('express')
   , config = require('../config.js');
 
 var app = gentle();
@@ -15,12 +16,12 @@ app.get("/", function(req,res){
 	res.render("index");
 });
 
-app.get("/my", app.ensureAuthenticated, function(req,res){
-	res.render("index");
-});
+var myapp = express();
+
+myapp.use( '/admin', app );
 
 if ( !module.parent ) {
-	app.listen(3333);
+	myapp.listen(3333);
 	console.log('Gentle app started on port 3333');
 }
 

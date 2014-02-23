@@ -9,8 +9,8 @@ html(lang='en')
     meta(name='author', content='')
     link(rel='shortcut icon', href='/favicon.ico')
     title= ( title ? title + " | " : "" ) + brand_name
-    link(href='/static/css/base.min.css', rel='stylesheet')
-    link(href='/static/css/bootstrap-theme.css', rel='stylesheet')
+    mixin link("base.min.css")
+    mixin link("bootstrap-theme.css")
     block style
       style.
         body{padding-top: 70px;padding-bottom:30px;}
@@ -22,8 +22,8 @@ html(lang='en')
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             each t in tables
-              li(class = t.name == table.name ? "active" : undefined)
-                a(href="/" + t.name)= t.alias
+              li(class = table && t.name == table.name ? "active" : undefined)
+                a(href=urlFor("/" + t.name))= t.alias
           ul.nav.navbar-nav.navbar-right
             if username
              li 
@@ -40,5 +40,5 @@ html(lang='en')
       hr
       .footer
         p &copy; #{brand_name} 2014
-    script(src='/static/js/base.min.js', type='text/javascript')
-    script(src='/static/js/locales/bootstrap-datetimepicker.zh-CN.js', type='text/javascript')
+    mixin script('base.min.js')
+    mixin script('locales/bootstrap-datetimepicker.zh-CN.js')
