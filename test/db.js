@@ -64,6 +64,18 @@ describe('mysql', function() {
 		mydb.hasTable("blog1").should.be.false;
 	});
 
+	it('mysql util', function(){
+		var mydb = new mysql(config.mysql);
+		var op = mydb.options({
+			conditions: {
+				a: [[3,4]]
+			  , b: [2,8]
+			  , c: "abc"
+			}
+		});
+		op.conditions.should.be.eql("(`a` IN (3, 4)) AND (`b` BETWEEN 2 AND 8) AND (`c` = 'abc')");
+	});
+
 	describe('connect', function() {
 		var db = new mysql( config.mysql + "?multipleStatements=true" );
 		before(function(done){
