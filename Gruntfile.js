@@ -62,7 +62,7 @@ module.exports = function( grunt ) {
 			"bootstrap-theme":{
 				expand: true,
 				cwd: "components/bootstrap/dist/css/",
-				src: ["bootstrap-theme.css"],
+				src: ["bootstrap-theme.css", "bootstrap-theme.css.map"],
 				dest: 'public/static/css'
 			},
 			"bootstrap-fonts": {
