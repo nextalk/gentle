@@ -1,0 +1,11 @@
+table.table.table-striped.table-bordered
+  thead
+    tr
+      each column in table.columns()
+        th= column.label
+  tbody
+    each row in data
+      tr
+        each column in table.columns()
+          td= row[column.name]
+

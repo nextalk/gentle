@@ -4,3 +4,7 @@ block content
     li
       a(href=urlFor("/")) Index
     li.active= table.alias
+  if data && data.length
+    include table
+  else
+    .alert.alert-info Empty data
