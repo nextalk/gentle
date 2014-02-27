@@ -7,7 +7,7 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
-    link(rel='shortcut icon', href='/favicon.ico')
+    link(rel='shortcut icon', href=urlFor('/favicon.ico'))
     title= ( title ? title + " | " : "" ) + brand_name
     mixin link("base.min.css")
     mixin link("bootstrap-theme.css")
