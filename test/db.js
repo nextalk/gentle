@@ -66,14 +66,30 @@ describe('mysql', function() {
 
 	it('mysql util', function(){
 		var mydb = new mysql(config.mysql);
-		var op = mydb.options({
+		var op = mydb.optionsToSql({
 			conditions: {
 				a: [[3,4]]
 			  , b: [2,8]
 			  , c: "abc"
 			}
 		});
-		op.conditions.should.be.eql("(`a` IN (3, 4)) AND (`b` BETWEEN 2 AND 8) AND (`c` = 'abc')");
+		op.conditions.should.be.eql("WHERE (`a` IN (3, 4)) AND (`b` BETWEEN 2 AND 8) AND (`c` = 'abc')");
+		var op = mydb.optionsToSql({
+			conditions: {
+				a: null
+			  , b: [2,8]
+			  , c: "abc"
+			}
+		});
+		op.conditions.should.be.eql("WHERE (`a` IS NULL) AND (`b` BETWEEN 2 AND 8) AND (`c` = 'abc')");
+		var op = mydb.optionsToSql({sort: "name"});
+		op.sort.should.be.eql('ORDER BY `name` DESC');
+		var op = mydb.optionsToSql({sort: "-name"});
+		op.sort.should.be.eql('ORDER BY `name` ASC');
+		var op = mydb.optionsToSql({page: {page: 1, per_size: 12}});
+		op.page.should.be.equal("LIMIT 12 OFFSET 0");
+		var op = mydb.optionsToSql({page: {page: 2, per_size: 12}});
+		op.page.should.be.equal("LIMIT 12 OFFSET 12");
 	});
 
 	describe('connect', function() {
