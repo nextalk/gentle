@@ -2,7 +2,7 @@ extend layout
 block content
   ol.breadcrumb
     li
-      a(href=urlFor("/"))= __("Index")
+      a(href=url("/"))= __("Index")
     li.active= table.alias
   if data && data.length
     form(method="get")

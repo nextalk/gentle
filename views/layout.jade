@@ -7,7 +7,7 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
-    link(rel='shortcut icon', href=urlFor('/favicon.ico'))
+    link(rel='shortcut icon', href=url('/favicon.ico'))
     title= ( title ? title + " | " : "" ) + brand_name
     mixin link("base.min.css")
     mixin link("bootstrap-theme.css")
@@ -18,21 +18,21 @@ html(lang='en')
     .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
       .container
         .navbar-header
-          a.navbar-brand(href=urlFor("/"))= brand_name
+          a.navbar-brand(href=url("/"))= brand_name
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             each t in tables
               li(class = table && t.name == table.name ? "active" : undefined)
-                a(href=urlFor("/" + t.name))= t.alias
+                a(href=url(t))= t.alias
           ul.nav.navbar-nav.navbar-right
             if username
              li 
                a(href="#")= username
              li
-               a(href=urlFor("/logout")) Logout
+               a(href=url("/logout")) Logout
             else
              li
-               a(href=urlFor("/login")) Login
+               a(href=url("/login")) Login
 
     .container(role="main")
       block content

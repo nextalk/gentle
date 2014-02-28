@@ -7,5 +7,9 @@ table.table.table-striped.table-bordered
     each row in data
       tr
         each column in table.columns()
-          td= row[column.name]
+          if column.primary
+            td
+              a(href=url(table, row, "edit"))= row[column.name]
+          else
+            td= row[column.name]
 

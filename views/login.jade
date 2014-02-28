@@ -7,7 +7,7 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
-    link(rel='shortcut icon', href=urlFor('/favicon.ico'))
+    link(rel='shortcut icon', href=url('/favicon.ico'))
     title Login
     mixin link('base.min.css')
     mixin link('bootstrap-theme.css')
@@ -56,7 +56,7 @@ html(lang='en')
     .container
       if message
         div.alert.alert-danger= message
-      form.form-signin(action=urlFor("/login"),method="POST")
+      form.form-signin(action=url("/login"),method="POST")
         h2.form-signin-heading Login
         input.form-control(type='text', name='username', placeholder='Username', autofocus='autofocus', value=username)
         input.form-control(type='password', name='password', placeholder='Password')
