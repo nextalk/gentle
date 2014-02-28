@@ -5,6 +5,9 @@ block content
       a(href=urlFor("/")) Index
     li.active= table.alias
   if data && data.length
-    include table
+    form(method="get")
+      include table
   else
-    .alert.alert-info Empty data
+    p.bg-info(style="padding:15px;") Empty data
+  if data && data.length
+    include pager
