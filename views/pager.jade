@@ -1,0 +1,13 @@
+.clearfix
+  if pager.len
+    ul.pagination.pull-right
+      li(class=pager.prev ? undefined : "disabled")
+        a(href="#") &laquo;
+      each page in pager.pages
+        li(class= page == pager.page ? "active" : undefined)
+          a(href="#")= page
+      li(class=pager.next ? undefined : "disabled")
+        a(href="#") &raquo;
+  .pull-right(style="margin: 26px 20px;")
+    //p 共 #{ pager.total } 条， #{ pager.len } 页，每页 #{ pager.per_size } 条
+    p Total: #{ pager.total }, Page: #{ pager.len },  Per page size: #{ pager.per_size } 
