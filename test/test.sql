@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `admin`;
 
 CREATE TABLE `admin` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `login` char(20) NOT NULL DEFAULT '',
+  `login` char(20) NOT NULL DEFAULT '' COMMENT '//Username for login',
   `password` char(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)

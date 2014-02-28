@@ -1,0 +1,20 @@
+include form
+extend layout
+block content
+  ol.breadcrumb
+    li
+      a(href=url("/"))= __("Index")
+    li
+      a(href=url(table))= table.alias
+    li.active= __("Edit")
+  form.form-horizontal(method="POST", enctype="multipart/form-data", action=url(table, data, 'update'), role="form")
+    input(type="hidden", name="_METHOD", value="PUT")
+    input(type="hidden", name="_REFERRER", value=_referrer)
+    each column in table.columns()
+      if !column.primary && column.permit("update")
+        mixin form(column, data[column.name])
+    .form-group
+      .col-sm-offset-3.col-sm-5
+        button.btn.btn-primary(type="submit")= __("Submit")
+        | &nbsp;&nbsp;&nbsp;&nbsp;
+        button.btn.btn-default(type="button")= __("Cancel")

@@ -1,4 +1,11 @@
 {
 	"Total: %d, Page: %d, Per page size: %d": "共 %d 条，%d 页，每页 %d 条",
-	"Index": "首页"
+	"Index": "首页",
+	"Edit": "Edit",
+	"Select": "Select",
+	"YES": "YES",
+	"Yes": "Yes",
+	"No": "No",
+	"Submit": "Submit",
+	"Cancel": "Cancel"
 }

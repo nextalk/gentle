@@ -1,0 +1,113 @@
+mixin label(column, data)
+  .form-group
+    label.control-label= column.label
+    p.form-control-static= data[column.name]
+
+mixin input(column, type, value, step)
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step)
+      span.help-block= column.help
+
+mixin datetime(column, value, timeType)
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      div(class="input-group "+(timeType || "datetime")+"picker")
+        input.form-control(type=type, id=column.name, name=column.name, value=value, disabled= column.disabled)
+        span.input-group-btn
+          button.btn.btn-default(type="button")
+            if timeType == "time"
+              span.glyphicon.glyphicon-time
+            else
+              span.glyphicon.glyphicon-calendar
+      span.help-block= column.help
+
+mixin textarea(column, value, isHtml)
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      textarea(class=isHtml ? "editor form-control" : "form-control", rows=4, id=column.name, name=column.name, value=value, disabled= column.disabled)
+      span.help-block= column.help
+
+mixin select(column, value)
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      select.form-control(id=column.name, name=column.name, value=value, disabled= column.disabled)
+        option(value="")= __("Select")
+        for option in column.extra
+          option(value=option[0], selected= value&&value==option[0] ? true: undefined)= option[1]
+
+mixin checkgroup(column, value)
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      for option in column.extra
+        label.checkbox-inline
+          input(type="checkbox", name=column.name+'[]', value=option[0], checked= value && value.indexOf(option[0]) != -1 ? true : undefined, disabled= column.disabled)
+          span= option[1]
+      span.help-block= column.help
+
+mixin bool(column, value)
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      label.radio-inline
+        input(type="radio", name=column.name, value="1", checked= value ? true : undefined, disabled= column.disabled)
+        span= __("Yes")
+      label.radio-inline
+        input(type="radio", name=column.name, value="0", checked= value ? undefined : true, disabled= column.disabled)
+        span= __("No")
+      span.help-block= column.help
+
+
+mixin password(column, value)
+  mixin input(column, "password", value)
+
+mixin text(column, value)
+  mixin input(column, "text", value)
+
+mixin number(column, value)
+  mixin input(column, "number", value, column.extra)
+
+mixin file(column, value)
+  mixin input(column, "file", value)
+
+mixin image(column, value)
+  mixin input(column, "file", value)
+
+mixin html(column, value)
+  mixin textarea(column, value, 1)
+
+mixin date(column, value)
+  mixin datetime(column, value, "date")
+
+mixin time(column, value)
+  mixin datetime(column, value, "time")
+
+mixin form(column, value)
+  case column.type
+    when 'number'
+      mixin number(column, value)
+    when 'bool'
+      mixin bool(column, value)
+    when 'textarea'
+      mixin textarea(column, value)
+    when 'select'
+      mixin select(column, value)
+    when 'checkgroup'
+      mixin checkgroup(column, value)
+    when 'file'
+      mixin file(column, value)
+    when 'image'
+      mixin image(column, value)
+    when 'datetime'
+      mixin datetime(column, value)
+    when 'time'
+      mixin time(column, value)
+    when 'date'
+      mixin date(column, value)
+    default
+      mixin text(column, value)
