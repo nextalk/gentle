@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.14)
 # Database: gentle_test
-# Generation Time: 2014-02-21 13:18:53 +0000
+# Generation Time: 2014-02-27 09:15:54 +0000
 # ************************************************************
 
 
@@ -33,6 +33,16 @@ CREATE TABLE `admin` (
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Admin';
 
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+
+INSERT INTO `admin` (`id`, `login`, `password`)
+VALUES
+	(1,'admin','111111'),
+	(2,'demo','demo');
+
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table posts
