@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.14)
 # Database: gentle_test
-# Generation Time: 2014-03-01 08:05:31 +0000
+# Generation Time: 2014-03-01 08:07:40 +0000
 # ************************************************************
 
 
@@ -55,7 +55,9 @@ CREATE TABLE `posts` (
   `title` char(100) NOT NULL DEFAULT '' COMMENT '//Max length 50',
   `category` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'Category|select(0:Default,1:Life,2:News)//Select the category',
   `relation` enum('personal','family','friend','classmate') DEFAULT NULL,
-  `posted_to` set('twitter','facebook','google') DEFAULT NULL,
+  `post_to` set('twitter','facebook','google') DEFAULT NULL,
+  `post_date` date DEFAULT NULL,
+  `post_time` time DEFAULT NULL,
   `retry` int(5) DEFAULT NULL,
   `price` decimal(5,2) DEFAULT NULL,
   `publish` tinyint(1) DEFAULT NULL,
@@ -68,9 +70,9 @@ CREATE TABLE `posts` (
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 
-INSERT INTO `posts` (`id`, `title`, `category`, `relation`, `posted_to`, `retry`, `price`, `publish`, `pic`, `content`, `created_at`)
+INSERT INTO `posts` (`id`, `title`, `category`, `relation`, `post_to`, `post_date`, `post_time`, `retry`, `price`, `publish`, `pic`, `content`, `created_at`)
 VALUES
-	(1,'Hello word',0,NULL,'facebook',1,NULL,NULL,NULL,X'546869732069732074686520666972737420706F73742E',NULL);
+	(1,'Hello word',0,NULL,'facebook',NULL,NULL,1,NULL,NULL,NULL,X'546869732069732074686520666972737420706F73742E',NULL);
 
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
