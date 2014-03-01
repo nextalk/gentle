@@ -10,18 +10,17 @@ mixin input(column, type, value, step)
       input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step)
       span.help-block= column.help
 
-mixin datetime(column, value, timeType)
+mixin datetime(column, value, timeType, format)
   .form-group
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
-      div(class="input-group "+(timeType || "datetime")+"picker")
+      div(class="input-group date g-"+(timeType || "datetime")+"picker", data-date-format=format)
         input.form-control(type=type, id=column.name, name=column.name, value=value, disabled= column.disabled)
-        span.input-group-btn
-          button.btn.btn-default(type="button")
-            if timeType == "time"
-              span.glyphicon.glyphicon-time
-            else
-              span.glyphicon.glyphicon-calendar
+        span.input-group-addon
+          if timeType == "time"
+            span.glyphicon.glyphicon-time
+          else
+            span.glyphicon.glyphicon-calendar
       span.help-block= column.help
 
 mixin textarea(column, value, isHtml)
@@ -83,10 +82,10 @@ mixin html(column, value)
   mixin textarea(column, value, 1)
 
 mixin date(column, value)
-  mixin datetime(column, value, "date")
+  mixin datetime(column, value, "date", "yyyy-mm-dd")
 
 mixin time(column, value)
-  mixin datetime(column, value, "time")
+  mixin datetime(column, value, "time", "hh:ii")
 
 mixin form(column, value)
   case column.type

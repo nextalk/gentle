@@ -1,0 +1,58 @@
+.modal form{
+	margin: 0;
+}
+
+.table tr .del {
+	display: none;
+	position: absolute;
+	margin: -8px 0 0 -34px;
+	padding: 8px 7px;
+	background: #fff;
+}
+.table tr:hover .del {
+	display: block;
+}
+.table th a {
+	color: #333;
+}
+
+.filter{
+	margin-right: 10px;
+}
+
+.filter form{
+	margin:0 0 10px;
+}
+
+.btn-toolbar .btn-group{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.export{
+	margin-bottom: 10px;
+}
+
+.rate{
+	background: url(../images/star.gif) no-repeat 0 0;
+	width:32px; /*80*/
+	height:16px;
+}
+
+.rate-1{
+	background-position: 0 -16px;
+}
+.rate-2{
+	background-position: 0 -32px;
+}
+.rate-3{
+	background-position: 0 -48px;
+}
+.rate-4{
+	background-position: 0 -64px;
+}
+.rate-5{
+	background-position: 0 -80px;
+}
+
+
