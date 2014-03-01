@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` char(100) NOT NULL DEFAULT '' COMMENT '//Max length 50',
-  `category` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'Type|select(0:Default,1:Life,2:News)//Select the category',
+  `category` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'Category|select(0:Default,1:Life,2:News)//Select the category',
   `relation` enum('personal','family','friend','classmate') DEFAULT NULL,
   `posted_to` set('twitter','facebook','google') DEFAULT NULL,
   `retry` int(5) DEFAULT NULL,
