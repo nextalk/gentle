@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.14)
 # Database: gentle_test
-# Generation Time: 2014-02-27 09:15:54 +0000
+# Generation Time: 2014-03-01 08:05:31 +0000
 # ************************************************************
 
 
@@ -65,6 +65,15 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Post//My blog posts';
 
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+
+INSERT INTO `posts` (`id`, `title`, `category`, `relation`, `posted_to`, `retry`, `price`, `publish`, `pic`, `content`, `created_at`)
+VALUES
+	(1,'Hello word',0,NULL,'facebook',1,NULL,NULL,NULL,X'546869732069732074686520666972737420706F73742E',NULL);
+
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
