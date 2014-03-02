@@ -15,7 +15,7 @@ mixin datetime(column, value, timeType, format)
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
       div(class="input-group date g-"+(timeType || "datetime")+"picker", data-date-format=format)
-        input.form-control(type=type, id=column.name, name=column.name, value=value, disabled= column.disabled)
+        input.form-control(type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, readonly=true)
         span.input-group-addon
           if timeType == "time"
             span.glyphicon.glyphicon-time
