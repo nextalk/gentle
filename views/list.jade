@@ -4,6 +4,16 @@ block content
     li
       a(href=url("/"))= __("Index")
     li.active= table.alias
+  if success
+    .alert.alert-success.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      |#{success}
+  .btn-toolbar.clearfix(role="toolbar")
+    if table.permit("create")
+      .btn-group.pull-left(style='margin-bottom:10px;')
+        a.btn.btn-default(href=url(table, "new"))
+          span.glyphicon.glyphicon-plus
+          span= __("New")
   if data && data.length
     form(method="get")
       include table

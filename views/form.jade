@@ -37,7 +37,7 @@ mixin select(column, value)
       select.form-control(id=column.name, name=column.name, value=value, disabled= column.disabled)
         option(value="")= __("Select")
         for option in column.extra
-          option(value=option[0], selected= value&&value==option[0] ? true: undefined)= option[1]
+          option(value=option[0], selected= value==option[0] ? true: undefined)= option[1]
       span.help-block= column.help
 
 mixin checkgroup(column, value)
@@ -46,7 +46,7 @@ mixin checkgroup(column, value)
     .col-sm-5
       for option in column.extra
         label.checkbox-inline
-          input(type="checkbox", name=column.name+'[]', value=option[0], checked= value && value.indexOf(option[0]) != -1 ? true : undefined, disabled= column.disabled)
+          input(type="checkbox", name=column.name, value=option[0], checked= value && value.indexOf(option[0]) != -1 ? true : undefined, disabled= column.disabled)
           span= option[1]
       span.help-block= column.help
 

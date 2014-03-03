@@ -6,5 +6,9 @@
 	"Yes": "是",
 	"No": "否",
 	"Cancel": "取消",
-	"Update": "更新"
+	"Update": "更新",
+	"Update `%s` success": "Update `%s` success",
+	"New": "New",
+	"Create": "Create",
+	"Create `%s` success": "Create `%s` success"
 }

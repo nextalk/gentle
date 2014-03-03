@@ -6,19 +6,19 @@ block content
       a(href=url("/"))= __("Index")
     li
       a(href=url(table))= table.alias
-    li.active= __("Edit")
+    li.active= __("New")
   if error
     .alert.alert-danger.alert-dismissable
       button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
       |#{error}
-  form.form-horizontal(method="POST", enctype="multipart/form-data", action=url(table, data, 'update'), role="form")
-    input(type="hidden", name="_method", value="PUT")
+  form.form-horizontal(method="POST", enctype="multipart/form-data", action=url(table, 'create'), role="form")
+    input(type="hidden", name="_method", value="POST")
     input(type="hidden", name="_referrer", value=_referrer)
     each column in table.columns()
       if !column.primary && column.permit("update")
-        mixin form(column, (params || data)[column.name])
+        mixin form(column, (params || {})[column.name])
     .form-group
       .col-sm-offset-3.col-sm-5
-        button.btn.btn-primary(type="submit")= __("Update")
+        button.btn.btn-primary(type="submit")= __("Create")
         | &nbsp;&nbsp;&nbsp;&nbsp;
         button.btn.btn-default(type="button")= __("Cancel")
