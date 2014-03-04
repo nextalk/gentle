@@ -3,11 +3,11 @@ mixin label(column, data)
     label.control-label= column.label
     p.form-control-static= data[column.name]
 
-mixin input(column, type, value, step)
+mixin input(column, type, value, step, accept)
   .form-group
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
-      input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step)
+      input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step, accept=accept)
       span.help-block= column.help
 
 mixin datetime(column, value, timeType, format)
@@ -76,7 +76,7 @@ mixin file(column, value)
   mixin input(column, "file", value)
 
 mixin image(column, value)
-  mixin input(column, "file", value)
+  mixin input(column, "file", value, undefined, "image/*")
 
 mixin html(column, value)
   mixin textarea(column, value, 1)
