@@ -9,6 +9,7 @@ table.table.table-striped.table-bordered
         each column in table.columns()
           if column.primary
             td
+              mixin del(url(table, row))
               a(href=url(table, row, "edit"))= row[column.name]
           else
             td= row[column.name]

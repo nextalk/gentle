@@ -8,6 +8,10 @@ block content
     .alert.alert-success.alert-dismissable
       button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
       |#{success}
+  if error
+    .alert.alert-danger.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      |#{error}
   .btn-toolbar.clearfix(role="toolbar")
     if table.permit("create")
       .btn-group.pull-left(style='margin-bottom:10px;')

@@ -4,3 +4,7 @@ mixin link(src)
   link(href=url("/static/css/"+src), rel='stylesheet')
 mixin script(src)
   script(src=url('/static/js/'+src), type='text/javascript')
+mixin del(uri)
+  .del
+    a(href=uri, onclick="if(confirm('"+__("Confirm delete ?")+"')){ $('<form action='+this.href+' method=POST ><input type=hidden name=_method value=DELETE /></form>').submit(); };return false;")
+      span.glyphicon.glyphicon-remove

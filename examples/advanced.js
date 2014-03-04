@@ -20,6 +20,9 @@ db.table("posts", function(table){
 		, box: [[50, 50], [200, 150]]
 		}
 	});
+	table.column("title", {
+		value: "Title"
+	});
 });
 
 app.get("/", function(req,res){

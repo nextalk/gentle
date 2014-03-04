@@ -7,8 +7,10 @@
 	"No": "否",
 	"Cancel": "取消",
 	"Update": "更新",
-	"Update `%s` success": "Update `%s` success",
-	"New": "New",
-	"Create": "Create",
-	"Create `%s` success": "Create `%s` success"
+	"Update `%s` success": "更新 `%s` 成功",
+	"New": "新增",
+	"Create": "创建",
+	"Create `%s` success": "新增 `%s` 成功",
+	"Confirm delete ?": "确定删除？",
+	"Delete `%s` success": "删除 `%s` 成功"
 }
