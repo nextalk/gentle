@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` char(100) NOT NULL DEFAULT '' COMMENT '//Max length 50',
-  `category` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'Category|select(0:Default,1:Life,2:News)//Select the category',
+  `category` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'Category|select([[0,"Default"],[1,"Life"],[2,"News"]])//Select the category',
   `relation` enum('personal','family','friend','classmate') DEFAULT NULL,
   `post_to` set('twitter','facebook','google') DEFAULT NULL,
   `post_date` date DEFAULT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE `posts` (
   `publish` tinyint(1) DEFAULT NULL,
   `pic` char(30) DEFAULT NULL COMMENT 'Picture|image',
   `content` blob,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL COMMENT '!',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Post//My blog posts';
 

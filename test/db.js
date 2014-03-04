@@ -7,7 +7,7 @@ var gentle = require('../')
 
 describe('util', function() {
 	it('should parse attribute from comment', function(){
-		var res = db.parseComment( 'Type|select(0:Default,1:Life,2:News)//Select the category' );
+		var res = db.parseComment( 'Type|select([[0,"Default"],[1,"Life"],[2,"News"]])//Select the category' );
 		res.label.should.be.equal('Type');
 		res.extra.should.be.eql( [ [ '0', 'Default' ], [ '1', 'Life' ], [ '2', 'News' ] ] );
 		res.type.should.be.equal('select');
