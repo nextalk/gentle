@@ -12,6 +12,16 @@ app.config();
 
 var db = app.db;
 
+db.table("posts", function(table){
+	table.column("pic", {
+		type: "image"
+	  , extra:{
+		  quality: [30, 60]
+		, box: [[50, 50], [200, 150]]
+		}
+	});
+});
+
 app.get("/", function(req,res){
 	res.render("index");
 });

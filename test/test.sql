@@ -61,7 +61,7 @@ CREATE TABLE `posts` (
   `retry` int(5) DEFAULT NULL,
   `price` decimal(5,2) DEFAULT NULL,
   `publish` tinyint(1) DEFAULT NULL,
-  `pic` char(30) DEFAULT NULL COMMENT 'Picture|image',
+  `pic` char(30) DEFAULT NULL COMMENT 'Picture',
   `content` blob,
   `created_at` timestamp NULL DEFAULT NULL COMMENT '!',
   PRIMARY KEY (`id`)
