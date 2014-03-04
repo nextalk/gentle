@@ -3,7 +3,7 @@ var gentle = require('../')
   , db = require('../lib/db.js')
   , mysql = require('../lib/db/mysql.js')
   , fs = require('fs')
-  , config =require('../config.js');
+  , config =require('./config.js');
 
 describe('util', function() {
 	it('should parse attribute from comment', function(){

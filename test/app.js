@@ -1,5 +1,5 @@
 var gentle = require('../')
-  , config = require('../config.js');
+  , config = require('./config.js');
 
 describe('app', function() {
 	it('should support mysql', function(){

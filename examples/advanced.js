@@ -1,6 +1,6 @@
 var gentle = require('../')
   , express = require('express')
-  , config = require('../config.js');
+  , config = require('./config.js');
 
 var app = gentle();
 
