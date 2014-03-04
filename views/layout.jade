@@ -11,6 +11,7 @@ html(lang='en')
     title= ( title ? title + " | " : "" ) + brand_name
     mixin link("base.min.css")
     mixin link("bootstrap-theme.css")
+    mixin link("gentle.css")
     block style
       style.
         body{padding-top: 70px;padding-bottom:30px;}
@@ -42,4 +43,4 @@ html(lang='en')
         p &copy; #{brand_name} 2014
     mixin script('base.min.js')
     mixin script('locales/bootstrap-datetimepicker.zh-CN.js')
-    mixin script('custom.js')
+    mixin script('gentle.js')

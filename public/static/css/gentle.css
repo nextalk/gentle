@@ -1,19 +1,20 @@
-.modal form{
-	margin: 0;
-}
-
 .table tr .del {
 	display: none;
 	position: absolute;
-	margin: -8px 0 0 -34px;
+	margin: -8px 0 0 -37px;
 	padding: 8px 7px;
 	background: #fff;
 }
 .table tr:hover .del {
 	display: block;
 }
+
 .table th a {
 	color: #333;
+}
+/*
+.modal form{
+	margin: 0;
 }
 
 .filter{
@@ -35,7 +36,7 @@
 
 .rate{
 	background: url(../images/star.gif) no-repeat 0 0;
-	width:32px; /*80*/
+	width:32px; 
 	height:16px;
 }
 
@@ -55,4 +56,4 @@
 	background-position: 0 -80px;
 }
 
-
+*/
