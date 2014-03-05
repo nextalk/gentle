@@ -12,7 +12,10 @@ app.config();
 
 var db = app.db;
 
-var user = db.table("users");
+var user = db.table("users")
+	.permit("create", false)
+	.permit("update", false)
+	.permit("delete", false);
 
 db.table("posts", function(table){
 	table.column("pic", {

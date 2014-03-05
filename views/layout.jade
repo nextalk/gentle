@@ -23,8 +23,9 @@ html(lang='en')
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             each t in tables
-              li(class = table && t.name == table.name ? "active" : undefined)
-                a(href=url(t))= t.alias
+              if(t.permit("manage"))
+                li(class = table && t.name == table.name ? "active" : undefined)
+                  a(href=url(t))= t.alias
           ul.nav.navbar-nav.navbar-right
             if username
              li 

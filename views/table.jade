@@ -11,11 +11,13 @@ table.table.table-striped.table-bordered
                   span.fa.fa-sort-asc
                 else
                   span.fa.fa-sort-desc
-                span &nbsp;#{column.label}
+                |&nbsp;
+                = column.label
             else
               a(href=url(table,table.where(),{sort:column.name}))
                 span.fa.fa-sort
-                span &nbsp;#{column.label}
+                |&nbsp;
+                = column.label
         else
           th= column.label
   tbody
@@ -24,8 +26,12 @@ table.table.table-striped.table-bordered
         each column in table.columns()
           if column.primary
             td
-              mixin del(url(table, row))
-              a(href=url(table, row, "edit"))= row[column.name]
+              if table.permit("delete")
+                mixin del(url(table, row))
+              if table.permit("update")
+                a(href=url(table, row, "edit"))= row[column.name]
+              else
+                = row[column.name]
           else
             td= row[column.name]
 
