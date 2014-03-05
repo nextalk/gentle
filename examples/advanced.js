@@ -12,6 +12,8 @@ app.config();
 
 var db = app.db;
 
+var user = db.table("users");
+
 db.table("posts", function(table){
 	table.column("pic", {
 		type: "image"
@@ -23,6 +25,7 @@ db.table("posts", function(table){
 	table.column("title", {
 		value: "Title"
 	});
+	table.column("user_id").filter(user, "name").belong(user, "name");
 });
 
 app.get("/", function(req,res){
