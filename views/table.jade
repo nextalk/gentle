@@ -1,8 +1,23 @@
+- var sort = table.sort()
 table.table.table-striped.table-bordered
   thead
     tr
       each column in table.columns()
-        th= column.label
+        if column.permit("sort")
+          th
+            if sort.name == column.name
+              a(href=url(table,table.where(),{sort:{name: sort.name, asc: !sort.asc}}))
+                if sort.asc
+                  span.fa.fa-sort-asc
+                else
+                  span.fa.fa-sort-desc
+                span &nbsp;#{column.label}
+            else
+              a(href=url(table,table.where(),{sort:column.name}))
+                span.fa.fa-sort
+                span &nbsp;#{column.label}
+        else
+          th= column.label
   tbody
     each row in data
       tr

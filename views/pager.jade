@@ -2,11 +2,11 @@
   if pager.len
     ul.pagination.pull-right
       li(class=pager.prev ? undefined : "disabled")
-        a(href=url(table,{page:pager.prev})) &laquo;
+        a(href=url(table, table.where(),{page:pager.prev, sort:table.sort()})) &laquo;
       each page in pager.pages
         li(class= page == pager.page ? "active" : undefined)
-          a(href=url(table,{page:page}))= page
+          a(href=url(table, table.where(),{page:page, sort:table.sort()}))= page
       li(class=pager.next ? undefined : "disabled")
-        a(href=url(table,{page:pager.next})) &raquo;
+        a(href=url(table, table.where(),{page:pager.next, sort: table.sort()})) &raquo;
   .pull-right(style="margin: 26px 20px;")
     p= __("Total: %d, Page: %d, Per page size: %d", pager.total, pager.len, pager.per_size)
