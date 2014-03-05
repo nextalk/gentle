@@ -13,9 +13,13 @@ Start a simple server
 
 	gentle -u root -p public mysql
 
-###Mysql table structure comment style support
+###Parse setting form the comment
 
-name|type(value1:label1,value2:label2)//help text
+name|type(extra)//help
+
+example:
+
+	Category|select([[0,"Default"],[1,"Life"],[2,"News"]])//Select the category
 
 For Developer
 -------------------
