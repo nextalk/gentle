@@ -18,6 +18,10 @@ block content
         a.btn.btn-default(href=url(table, "new"))
           span.glyphicon.glyphicon-plus
           span= __("New")
+    if table.search()
+      form.pull-left(method="GET", action=url(table), style="padding:0px 10px;")
+        .form-group
+          input.form-control(name="q", placeholder=table.search().title, value=table.where().q)
   if data && data.length
     form(method="get")
       include table

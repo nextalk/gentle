@@ -18,6 +18,7 @@ var user = db.table("users")
 	.permit("delete", false);
 
 db.table("posts", function(table){
+	table.column("id");
 	table.column("pic", {
 		type: "image"
 	  , extra:{
@@ -29,7 +30,8 @@ db.table("posts", function(table){
 		value: "Title"
 	});
 	table.column("user_id").filter(user, "name").belong(user, "name");
-});
+
+}).search("title", "relation", "Search title and relation");
 
 app.get("/", function(req,res){
 	res.render("index");
