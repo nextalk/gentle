@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.14)
 # Database: gentle_test
-# Generation Time: 2014-03-05 01:54:05 +0000
+# Generation Time: 2014-03-05 03:22:52 +0000
 # ************************************************************
 
 
@@ -42,6 +42,29 @@ VALUES
 	(2,'demo','demo');
 
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table cities
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `cities`;
+
+CREATE TABLE `cities` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `cities` WRITE;
+/*!40000 ALTER TABLE `cities` DISABLE KEYS */;
+
+INSERT INTO `cities` (`id`, `name`)
+VALUES
+	(1,'New York'),
+	(2,'Los Angeles');
+
+/*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -88,47 +111,50 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) unsigned DEFAULT '1',
   `name` char(50) DEFAULT NULL,
   `password` char(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `city` (`city_id`),
+  CONSTRAINT `city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `name`, `password`)
+INSERT INTO `users` (`id`, `city_id`, `name`, `password`)
 VALUES
-	(1,'Jack','demo'),
-	(2,'Lily','demo'),
-	(3,'Lucy','demo'),
-	(4,'Aaron','demo'),
-	(5,'Abbott','demo'),
-	(6,'Abel','demo'),
-	(7,'Abner','demo'),
-	(8,'Alan','demo'),
-	(9,'Alfred','demo'),
-	(10,'Algernon','demo'),
-	(11,'Alva','demo'),
-	(12,'Alvin','demo'),
-	(13,'Amos','demo'),
-	(14,'Beacher','demo'),
-	(15,'Beck','demo'),
-	(16,'Ben','demo'),
-	(17,'Benjamin','demo'),
-	(18,'Bennett','demo'),
-	(19,'Berger','demo'),
-	(20,'Bert','demo'),
-	(21,'Berton','demo'),
-	(22,'Bertram','demo'),
-	(23,'Bevis','demo'),
-	(24,'Charles','demo'),
-	(25,'Chester','demo'),
-	(26,'Christopher','demo'),
-	(27,'Clarence','demo'),
-	(28,'Clark','demo'),
-	(29,'Claude','demo'),
-	(30,'Clement','demo'),
-	(31,'Colbert','demo');
+	(1,2,'Jack','demo'),
+	(2,2,'Lily','demo'),
+	(3,2,'Lucy','demo'),
+	(4,2,'Aaron','demo'),
+	(5,1,'Abbott','demo'),
+	(6,2,'Abel','demo'),
+	(7,1,'Abner','demo'),
+	(8,1,'Alan','demo'),
+	(9,2,'Alfred','demo'),
+	(10,1,'Algernon','demo'),
+	(11,1,'Alva','demo'),
+	(12,2,'Alvin','demo'),
+	(13,1,'Amos','demo'),
+	(14,1,'Beacher','demo'),
+	(15,2,'Beck','demo'),
+	(16,1,'Ben','demo'),
+	(17,1,'Benjamin','demo'),
+	(18,2,'Bennett','demo'),
+	(19,1,'Berger','demo'),
+	(20,2,'Bert','demo'),
+	(21,1,'Berton','demo'),
+	(22,1,'Bertram','demo'),
+	(23,2,'Bevis','demo'),
+	(24,1,'Charles','demo'),
+	(25,2,'Chester','demo'),
+	(26,1,'Christopher','demo'),
+	(27,2,'Clarence','demo'),
+	(28,1,'Clark','demo'),
+	(29,2,'Claude','demo'),
+	(30,1,'Clement','demo'),
+	(31,1,'Colbert','demo');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
