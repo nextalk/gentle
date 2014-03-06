@@ -38,7 +38,7 @@ mixin select(column, value)
         option(value="")= __("Select")
         if column.extra
           for option in column.extra
-            option(value=option[0], selected= value==option[0] ? true: undefined)= option[1]
+            option(value=option[0], selected= value==(''+option[0]) ? true: undefined)= option[1]
       span.help-block= column.help
 
 mixin checkgroup(column, value)
