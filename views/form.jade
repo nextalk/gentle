@@ -34,7 +34,7 @@ mixin select(column, value)
   .form-group
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
-      select.form-control(id=column.name, name=column.name, value=value, disabled= column.disabled)
+      select.form-control(class=column.scope ? "scope" : "", id=column.name, name=column.name, value=value, disabled= column.disabled)
         option(value="")= __("Select")
         if column.extra
           for option in column.extra
@@ -57,10 +57,10 @@ mixin bool(column, value)
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
       label.radio-inline
-        input(type="radio", name=column.name, value="1", checked= value ? true : undefined, disabled= column.disabled)
+        input(type="radio", name=column.name, value="1", checked= value && value !== '0' ? true : undefined, disabled= column.disabled)
         span= __("Yes")
       label.radio-inline
-        input(type="radio", name=column.name, value="0", checked= value ? undefined : true, disabled= column.disabled)
+        input(type="radio", name=column.name, value="0", checked= !value || value ==='0' ? true : undefined, disabled= column.disabled)
         span= __("No")
       span.help-block= column.help
 

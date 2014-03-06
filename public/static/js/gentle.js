@@ -1,4 +1,7 @@
 function formHelper( $wrap ) {
+	$($wrap).find(".scope").change(function(){
+		$(this).parents("form").attr("method", "get").submit();
+	});
 	$($wrap).find('.g-datepicker').datetimepicker({
 		language: 'zh-CN',
 		weekStart: 1,
@@ -56,10 +59,6 @@ function formHelper( $wrap ) {
 	//});
 
 	//$(".truncate").popover({placement: "top", html: true});
-
-	//$(".scope").change(function(){
-	//	$(this).parents("form").attr("method", "get").submit();
-	//});
 
 	//var $modal = $('<div class="modal hide fade"></div>').appendTo("body");
 	//$("a.ajax").click(function(){
