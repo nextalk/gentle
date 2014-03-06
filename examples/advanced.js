@@ -10,7 +10,10 @@ app.set('auth', {table: "admin", username:"login", password:"password"});
 
 app.config();
 
-var db = app.db;
+var db = app.db.load(function(err){
+	if(err)
+		throw err;
+});
 
 var city = db.table("cities", "City")
 	.permit("create", false)

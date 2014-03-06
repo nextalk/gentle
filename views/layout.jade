@@ -24,7 +24,7 @@ html(lang='en')
           a.navbar-brand(href=url("/"))= brand_name
         .navbar-collapse.collapse
           ul.nav.navbar-nav
-            each t in tables
+            each t in db.tables()
               if(t.permit("manage"))
                 li(class = table && t.name == table.name ? "active" : undefined)
                   a(href=url(t))= t.alias
