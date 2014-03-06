@@ -10,37 +10,37 @@ app.set('auth', {table: "admin", username:"login", password:"password"});
 
 app.config();
 
-var db = app.db.load(function(err){
+app.db.load(function(err, db){
 	if(err)
 		throw err;
+
+	var city = db.table("cities", "City")
+		.permit("create", false)
+		.permit("delete", false)
+
+	var user = db.table("users", "User")
+		.permit("create", false)
+		.permit("update", false)
+		.permit("delete", false)
+
+	var post = db.table("posts", function(table){
+		table.column("id");
+		table.column("pic", {
+			type: "image"
+		  , extra:{
+			  quality: [30, 60]
+			, box: [[50, 50], [200, 150]]
+			}
+		});
+		table.column("title", {
+			value: "Title"
+		});
+		table.column("user_id")
+			.filter(user, "name")
+			.belong(user, "name");
+
+	}).search("title", "relation", "Search title and relation");
 });
-
-var city = db.table("cities", "City")
-	.permit("create", false)
-	.permit("delete", false)
-
-var user = db.table("users", "User")
-	.permit("create", false)
-	.permit("update", false)
-	.permit("delete", false)
-
-var post = db.table("posts", function(table){
-	table.column("id");
-	table.column("pic", {
-		type: "image"
-	  , extra:{
-		  quality: [30, 60]
-		, box: [[50, 50], [200, 150]]
-		}
-	});
-	table.column("title", {
-		value: "Title"
-	});
-	table.column("user_id")
-		.filter(user, "name")
-		.belong(user, "name");
-
-}).search("title", "relation", "Search title and relation");
 
 app.get("/", function(req,res){
 	res.render("index");
