@@ -68,8 +68,11 @@ describe('mysql', function() {
 		var mydb = new mysql(config.mysql);
 		var op = mydb.optionsToSql({
 			conditions: {
-				a: [[3,4]]
-			  , b: [2,8]
+				a: [3,4]
+			  , b: {
+				  type: "range"
+				, value: [2,8]
+				}
 			  , c: "abc"
 			}
 		});
@@ -77,11 +80,19 @@ describe('mysql', function() {
 		var op = mydb.optionsToSql({
 			conditions: {
 				a: null
-			  , b: [2,8]
+			  , b: {
+				  type: "range"
+				, value: [2,8]
+				}
 			  , c: "abc"
+			  , d: {
+				  type: "search"
+				, key: ["title", "name"]
+				, value: "jake"
+				}
 			}
 		});
-		op.conditions.should.be.eql("WHERE (`a` IS NULL) AND (`b` BETWEEN 2 AND 8) AND (`c` = 'abc')");
+		op.conditions.should.be.eql("WHERE (`a` IS NULL) AND (`b` BETWEEN 2 AND 8) AND (`c` = 'abc') AND (`title` LIKE '%jake%' OR `name` LIKE '%jake%')");
 		var op = mydb.optionsToSql({sort: "name"});
 		op.sort.should.be.eql('ORDER BY `name` DESC');
 		var op = mydb.optionsToSql({sort: "-name"});
