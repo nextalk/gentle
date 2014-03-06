@@ -12,12 +12,16 @@ app.config();
 
 var db = app.db;
 
-var user = db.table("users")
+var city = db.table("cities", "City")
+	.permit("create", false)
+	.permit("delete", false)
+
+var user = db.table("users", "User")
 	.permit("create", false)
 	.permit("update", false)
-	.permit("delete", false);
+	.permit("delete", false)
 
-db.table("posts", function(table){
+var post = db.table("posts", function(table){
 	table.column("id");
 	table.column("pic", {
 		type: "image"
@@ -29,7 +33,9 @@ db.table("posts", function(table){
 	table.column("title", {
 		value: "Title"
 	});
-	table.column("user_id").filter(user, "name").belong(user, "name");
+	table.column("user_id")
+		.filter(user, "name")
+		.belong(user, "name");
 
 }).search("title", "relation", "Search title and relation");
 

@@ -12,5 +12,6 @@
 	"Create": "创建",
 	"Create `%s` success": "新增 `%s` 成功",
 	"Confirm delete ?": "确定删除？",
-	"Delete `%s` success": "删除 `%s` 成功"
+	"Delete `%s` success": "删除 `%s` 成功",
+	"All %s": "所有 %s"
 }

@@ -19,9 +19,24 @@ block content
           span.glyphicon.glyphicon-plus
           span= __("New")
     if table.search()
-      form.pull-left(method="GET", action=url(table), style="padding:0px 10px;")
+      form.pull-left.form-inline(method="GET", action=url(table))
+        |&nbsp;&nbsp;
         .form-group
-          input.form-control(name="q", placeholder=table.search().title, value=table.where().q)
+          input.form-control(name="q", placeholder=table.search().title, value=params.q)
+    form.pull-left.form-inline
+      each col in table.columns()
+        if col.permit("filter")
+          if col.type == "select"
+            |&nbsp;&nbsp;
+            .form-group
+              label.sr-only= col.label
+              select.form-control(onchange="window.location.href = this.value;")
+                - var ob = {}
+                - ob[col.name] = undefined
+                option(value=url(table, params, ob))= __("All %s", col.label)
+                each option in col.extra
+                  - ob[col.name] = option[0]
+                  option(value=url(table, params, ob), selected=params[col.name]==option[0])= option[1]
   if data && data.length
     form(method="get")
       include table

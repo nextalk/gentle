@@ -6,7 +6,7 @@ table.table.table-striped.table-bordered
         if column.permit("sort")
           th
             if sort.name == column.name
-              a(href=url(table,table.where(),{sort:{name: sort.name, asc: !sort.asc}}))
+              a(href=url(table,params,{sort:{name: sort.name, asc: !sort.asc}}))
                 if sort.asc
                   span.fa.fa-sort-asc
                 else
@@ -14,7 +14,7 @@ table.table.table-striped.table-bordered
                 |&nbsp;
                 = column.label
             else
-              a(href=url(table,table.where(),{sort:column.name}))
+              a(href=url(table,params,{sort:column.name}))
                 span.fa.fa-sort
                 |&nbsp;
                 = column.label
