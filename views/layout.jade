@@ -8,13 +8,15 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
     link(rel='shortcut icon', href=url('/favicon.ico'))
-    title= ( title ? title + " | " : "" ) + brand_name
+    title
+      block title
+      = brand_name
     mixin link("base.min.css")
     mixin link("bootstrap-theme.css")
     mixin link("gentle.css")
     block style
-      style.
-        body{padding-top: 70px;padding-bottom:30px;}
+    style.
+      body{padding-top: 70px;padding-bottom:30px;}
   body(role="document")
     .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
       .container
