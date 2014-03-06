@@ -35,8 +35,10 @@ app.db.load(function(err, db){
 		table.column("title", {
 			value: "Title"
 		});
+		table.column("city_id")
+			.filter(city, "name");
 		table.column("user_id")
-			.filter(user, "name")
+			.filter(user, "name", "city_id")
 			.belong(user, "name");
 
 	}).search("title", "relation", "Search title and relation");
