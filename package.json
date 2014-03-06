@@ -10,6 +10,7 @@
 		"connect-flash": "*",
 		"connect-busboy": "*",
 		"mkdirp": "*",
+		"async": "*",
 		"gm": "*",
 		"i18n": "*",
 		"mysql": "*",
