@@ -14,11 +14,11 @@ app.db.load(function(err, db){
 	if(err)
 		throw err;
 
-	var city = db.table("cities", "City")
+	var city = db.table("cities")
 		.permit("create", false)
 		.permit("delete", false)
 
-	var user = db.table("users", "User")
+	var user = db.table("users")
 		.permit("create", false)
 		.permit("update", false)
 		.permit("delete", false)
