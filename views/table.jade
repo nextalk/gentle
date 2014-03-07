@@ -3,35 +3,37 @@ table.table.table-striped.table-bordered
   thead
     tr
       each column in table.columns()
-        if column.permit("sort")
-          th
-            if sort.name == column.name
-              a(href=url(table,params,{sort:{name: sort.name, asc: !sort.asc}}))
-                if sort.asc
-                  span.fa.fa-sort-asc
-                else
-                  span.fa.fa-sort-desc
-                |&nbsp;
-                = column.label
-            else
-              a(href=url(table,params,{sort:column.name}))
-                span.fa.fa-sort
-                |&nbsp;
-                = column.label
-        else
-          th= column.label
+        if column.permit("display")
+          if column.permit("sort")
+            th
+              if sort.name == column.name
+                a(href=url(table,params,{sort:{name: sort.name, asc: !sort.asc}}))
+                  if sort.asc
+                    span.fa.fa-sort-asc
+                  else
+                    span.fa.fa-sort-desc
+                  |&nbsp;
+                  = column.label
+              else
+                a(href=url(table,params,{sort:column.name}))
+                  span.fa.fa-sort
+                  |&nbsp;
+                  = column.label
+          else
+            th= column.label
   tbody
     each row in data
       tr
         each column in table.columns()
-          if column.primary
-            td
-              if table.permit("delete")
-                mixin del(url(table, row))
-              if table.permit("update")
-                a(href=url(table, row, "edit"))= row[column.name]
-              else
-                = row[column.name]
-          else
-            td= row[column.name]
+          if column.permit("display")
+            if column.primary
+              td
+                if table.permit("delete")
+                  mixin del(url(table, row))
+                if table.permit("update")
+                  a(href=url(table, row, "edit"))= row[column.name]
+                else
+                  = row[column.name]
+            else
+              td= column.format(row[column.name], row)
 

@@ -3,6 +3,18 @@ var gentle = require('../')
   , table = require('../lib/table.js')
   , column = require('../lib/column.js');
 
+describe('table util', function() {
+	it('pair', function(){
+		table._pair([{a:1,b:1,c:1},{a:2,b:2,c:"c"}]).should.be.eql([[1,1,1], [2,2,"c"]]);
+		table._pair([{a:1,b:1,c:1},{a:2,b:2,c:"c"}], "b", "c").should.be.eql([[1,1], [2,"c"]]);
+	});
+	it('dict', function(){
+		table._dict([{a:1,b:1,c:1},{a:2,b:2,c:"c"}], "a", "c").should.be.eql({"1": "1", "2": "c"});
+		table._dict([[1,"c"], [2,"c"]]).should.be.eql( {"1": "c", "2": "c"});
+		table._dict([{a:1,b:1,c:1},{a:2,b:2,c:"c"}]).should.be.eql({"1": "1", "2": "2"});
+	});
+});
+
 describe('table', function() {
 	it('should add column', function(){
 		var admin = new table("admin");

@@ -36,12 +36,18 @@ app.db.load(function(err, db){
 			value: "Title"
 		});
 		table.column("city_id")
-			.filter(city, "name");
+			.filter(city, "name")
+			.belong(city, "name");
 		table.column("user_id")
 			.filter(user, "name", "city_id")
 			.belong(user, "name");
 
 	}).search("title", "relation", "Search title and relation");
+
+	user.column("post_num").has(post, "user_id");
+	city.column("post_num").has(post, "city_id");
+	city.column("user_num").has(user, "city_id");
+
 });
 
 app.get("/", function(req,res){
