@@ -35,5 +35,7 @@ table.table.table-striped.table-bordered
                 else
                   = row[column.name]
             else
-              td= column.format(row[column.name], row)
+              td
+                mixin format(column.format(row[column.name], row))
+
 
