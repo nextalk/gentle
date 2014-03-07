@@ -3,6 +3,7 @@ extend layout
 block title
   = __("Edit") + " . " + table.alias + " . "
 block content
+  - var allow = table.permit("update")
   ol.breadcrumb
     li
       a(href=url("/"))= __("Index")
@@ -17,10 +18,14 @@ block content
     input(type="hidden", name="_method", value="PUT")
     input(type="hidden", name="_referrer", value=_referrer)
     each column in table.columns()
+      - column.disabled = !allow
       if !column.primary && column.permit("update")
         mixin form(column, (params || data)[column.name])
     .form-group
       .col-sm-offset-3.col-sm-5
-        button.btn.btn-primary(type="submit")= __("Update")
-        | &nbsp;&nbsp;&nbsp;&nbsp;
-        button.btn.btn-default(type="button")= __("Cancel")
+        if allow
+          button.btn.btn-primary(type="submit")= __("Update")
+          | &nbsp;&nbsp;&nbsp;&nbsp;
+          button.btn.btn-default.back(type="button")= __("Cancel")
+        else
+          button.btn.btn-default.back(type="button")= __("Back")

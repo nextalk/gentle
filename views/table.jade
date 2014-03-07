@@ -30,10 +30,7 @@ table.table.table-striped.table-bordered
               td
                 if table.permit("delete")
                   mixin del(url(table, row))
-                if table.permit("update")
-                  a(href=url(table, row, "edit"))= row[column.name]
-                else
-                  = row[column.name]
+                a(href=url(table, row))= row[column.name]
             else
               td
                 mixin format(column.format(row[column.name], row))
