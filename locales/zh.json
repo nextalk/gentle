@@ -13,5 +13,9 @@
 	"Create `%s` success": "新增 `%s` 成功",
 	"Confirm delete ?": "确定删除？",
 	"Delete `%s` success": "删除 `%s` 成功",
-	"All %s": "所有 %s"
+	"All %s": "所有 %s",
+	"Login": "登录",
+	"Logout": "退出",
+	"Username": "用户名",
+	"Password": "密码"
 }

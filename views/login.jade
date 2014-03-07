@@ -8,7 +8,7 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
     link(rel='shortcut icon', href=url('/favicon.ico'))
-    title Login
+    title= __("Login")
     mixin css('base.min.css')
     mixin css('bootstrap-theme.css')
     style.
@@ -57,13 +57,13 @@ html(lang='en')
       if message
         div.alert.alert-danger= message
       form.form-signin(action=url("/login"),method="POST")
-        h2.form-signin-heading Login
-        input.form-control(type='text', name='username', placeholder='Username', autofocus='autofocus', value=username)
-        input.form-control(type='password', name='password', placeholder='Password')
+        h2.form-signin-heading= __("Login")
+        input.form-control(type='text', name='username', placeholder=__('Username'), autofocus='autofocus', value=username)
+        input.form-control(type='password', name='password', placeholder=__('Password'))
         //label.checkbox
           input(type='checkbox', value='remember-me')
           | Remember me
         br
-        button.btn.btn-lg.btn-primary.btn-block(type='submit') Login
+        button.btn.btn-lg.btn-primary.btn-block(type='submit')= __("Login")
 
 

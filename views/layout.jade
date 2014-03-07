@@ -33,10 +33,10 @@ html(lang='en')
              li 
                a(href="#")= username
              li
-               a(href=url("/logout")) Logout
+               a(href=url("/logout"))= __("Logout")
             else
              li
-               a(href=url("/login")) Login
+               a(href=url("/login"))= __("Login")
 
     .container(role="main")
       block content
