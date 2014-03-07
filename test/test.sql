@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.14)
 # Database: gentle_test
-# Generation Time: 2014-03-05 03:22:52 +0000
+# Generation Time: 2014-03-07 01:24:34 +0000
 # ************************************************************
 
 
@@ -75,6 +75,7 @@ DROP TABLE IF EXISTS `posts`;
 
 CREATE TABLE `posts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) unsigned NOT NULL,
   `user_id` int(11) unsigned NOT NULL,
   `title` char(100) NOT NULL DEFAULT '' COMMENT '//Max length 50',
   `category` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'Category|select([[0,"Default"],[1,"Life"],[2,"News"]])//Select the category',
@@ -96,9 +97,10 @@ CREATE TABLE `posts` (
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 
-INSERT INTO `posts` (`id`, `user_id`, `title`, `category`, `relation`, `post_to`, `post_date`, `post_time`, `retry`, `price`, `publish`, `pic`, `content`, `created_at`)
+INSERT INTO `posts` (`id`, `city_id`, `user_id`, `title`, `category`, `relation`, `post_to`, `post_date`, `post_time`, `retry`, `price`, `publish`, `pic`, `content`, `created_at`)
 VALUES
-	(1,1,'Hello world',0,NULL,'facebook',NULL,NULL,1,NULL,NULL,NULL,X'546869732069732074686520666972737420706F73742E',NULL);
+	(1,1,1,'Hello world',0,NULL,'facebook',NULL,NULL,1,NULL,NULL,NULL,X'546869732069732074686520666972737420706F73742E',NULL),
+	(2,2,2,'About us',1,'friend',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -124,7 +126,7 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `city_id`, `name`, `password`)
 VALUES
-	(1,2,'Jack','demo'),
+	(1,1,'Jack','demo'),
 	(2,2,'Lily','demo'),
 	(3,2,'Lucy','demo'),
 	(4,2,'Aaron','demo'),
