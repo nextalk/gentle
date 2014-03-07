@@ -46,7 +46,8 @@ app.db.load(function(err, db){
 
 	user.column("post_num").has(post, "user_id");
 	city.column("post_num").has(post, "city_id");
-	city.column("user_num").has(user, "city_id");
+	//The key is city_id
+	city.column("user_num").has(user);
 
 });
 
