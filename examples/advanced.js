@@ -22,6 +22,9 @@ app.db.load(function(err, db){
 		.permit("create", false)
 		.permit("update", false)
 		.permit("delete", false)
+	user.column("city_id")
+		.filter(city, "name")
+		.belong(city, "name");
 
 	var post = db.table("posts", function(table){
 		table.column("id");

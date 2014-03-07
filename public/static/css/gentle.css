@@ -12,6 +12,15 @@
 .table th a {
 	color: #333;
 }
+
+.btn-toolbar{
+	margin-bottom: 10px;
+}
+
+.btn-toolbar .form-group{
+	margin-left: 5px;
+}
+
 /*
 .modal form{
 	margin: 0;

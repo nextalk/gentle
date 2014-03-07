@@ -14,22 +14,20 @@ block content
     .alert.alert-danger.alert-dismissable
       button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
       |#{error}
-  .btn-toolbar.clearfix(role="toolbar")
+  .btn-toolbar.clearfix(role="toolbar", style="")
     if table.permit("create")
-      .btn-group.pull-left(style='margin-bottom:10px;')
+      .btn-group.pull-left
         a.btn.btn-default(href=url(table, "new"))
           span.glyphicon.glyphicon-plus
           span= __("New")
     if table.search()
       form.pull-left.form-inline(method="GET", action=url(table))
-        |&nbsp;&nbsp;
         .form-group
           input.form-control(name="q", placeholder=table.search().title, value=params.q)
     form.pull-left.form-inline
       each col in table.columns()
         if col.permit("filter")
           if col.type == "select"
-            |&nbsp;&nbsp;
             .form-group
               label.sr-only= col.label
               select.form-control(onchange="window.location.href = this.value;")
