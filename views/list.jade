@@ -14,9 +14,17 @@ block content
           span.glyphicon.glyphicon-plus
           span= __("New")
     if table.search()
-      form.pull-left.form-inline(method="GET", action=url(table))
+      form.pull-left.form-inline.col-sm-3(method="GET", action=url(table))
         .form-group
-          input.form-control(name="q", placeholder=table.search().title, value=params.q)
+          .input-group
+            input.form-control(name="q", placeholder=table.search().title, value=params.q)
+            span.input-group-btn
+              if params.q
+                a.btn.btn-default(href=url(table, params, {q: undefined}))
+                  span.glyphicon.glyphicon-remove
+              else
+                button.btn.btn-default(type="submit")
+                  span.glyphicon.glyphicon-search
     form.pull-left.form-inline
       each col in table.columns()
         if col.permit("filter")

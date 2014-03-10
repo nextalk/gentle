@@ -13,7 +13,7 @@
 	color: #333;
 }
 
-.btn-toolbar{
+.btn-toolbar .form-group, .btn-toolbar .btn-group{
 	margin-bottom: 10px;
 }
 
