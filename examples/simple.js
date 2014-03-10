@@ -8,14 +8,7 @@ app.set('secret', "mysecret-123");
 app.set('auth', {username:"demo", password:"demo"});
 
 app.config();
-
-app.get("/", function(req,res){
-	res.render("index");
-});
-
-app.get("/my", app.ensureAuthenticated, function(req,res){
-	res.render("index");
-});
+app.db.load();
 
 if ( !module.parent ) {
 	app.listen(3333);

@@ -54,10 +54,6 @@ app.db.load(function(err, db){
 
 });
 
-app.get("/", function(req,res){
-	res.render("index");
-});
-
 var myapp = express();
 
 myapp.use( '/admin', app );
