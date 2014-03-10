@@ -10,7 +10,7 @@ mixin input(column, type, value, step, accept)
       input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step, accept=accept)
       span.help-block= column.help
 
-mixin datetime(column, value, timeType, format)
+mixin _datetime(column, value, timeType, format)
   .form-group
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
@@ -83,11 +83,14 @@ mixin image(column, value)
 mixin html(column, value)
   mixin textarea(column, value, 1)
 
+mixin datetime(column, value)
+  mixin _datetime(column,  value && dateFormat(value, "yyyy-mm-dd HH:MM"), "datetime", "yyyy-mm-dd HH:MM")
+
 mixin date(column, value)
-  mixin datetime(column, value, "date", "yyyy-mm-dd")
+  mixin _datetime(column, value && dateFormat(value, "yyyy-mm-dd"), "date", "yyyy-mm-dd")
 
 mixin time(column, value)
-  mixin datetime(column, value, "time", "hh:ii")
+  mixin _datetime(column, value && value.split(":").slice(0, 2).join(":"), "time", "hh:ii")
 
 mixin form(column, value)
   case column.type

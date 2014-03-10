@@ -11,11 +11,45 @@ mixin del(uri)
 mixin link(content, table, p1, p2, p3, p4)
   a(href= url(table, p1, p2, p3))= content
 
+mixin f-datetime(date)
+  if date
+    = dateFormat(date, "isoDate")
+    br
+    = dateFormat(date, "HH:MM")
+
+mixin f-date(date)
+  if date
+    = dateFormat(date, "isoDate")
+
+mixin f-time(time)
+  if time
+    = time.split(":").slice(0, 2).join(":")
+
+mixin f-label(content, type, footer)
+  if type
+    span.label(class="label-" + type)= content
+  else
+    span.label.label-default= content
+  != footer
+
+mixin f-raw(content)
+  != content
+
 mixin format(ar)
   if Array.isArray(ar)
     case ar[0]
       when 'link'
-        mixin link(ar[1], ar[2], ar[3], ar[4], ar[5])
+        +link(ar[1], ar[2], ar[3], ar[4], ar[5])
+      when 'label'
+        +f-label(ar[1], ar[2], ar[3], ar[4], ar[5])
+      when 'datetime'
+        +f-datetime(ar[1], ar[2], ar[3], ar[4], ar[5])
+      when 'date'
+        +f-date(ar[1], ar[2], ar[3], ar[4], ar[5])
+      when 'time'
+        +f-time(ar[1], ar[2], ar[3], ar[4], ar[5])
+      when 'raw'
+        +f-raw(ar[1], ar[2], ar[3], ar[4], ar[5])
       default
         = ar[1]
   else
