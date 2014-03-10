@@ -6,7 +6,7 @@ var app = gentle();
 
 app.set('db url',  config.mysql + "gentle_test");
 app.set('secret', "mysecret-123");
-app.set('auth', {table: "admin", username:"login", password:"password"});
+//app.set('auth', {table: "admin", username:"login", password:"password"});
 
 app.config();
 
