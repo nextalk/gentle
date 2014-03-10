@@ -21,6 +21,10 @@
 	margin-left: 5px;
 }
 
+.form-inline.col-sm-3{
+	padding:0px;
+}
+
 /*
 .modal form{
 	margin: 0;
