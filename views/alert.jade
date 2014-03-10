@@ -1,0 +1,8 @@
+if success
+  .alert.alert-success.alert-dismissable
+    button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+    |#{success}
+if error
+  .alert.alert-danger.alert-dismissable
+    button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+    |#{error}

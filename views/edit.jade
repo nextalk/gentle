@@ -10,10 +10,7 @@ block content
     li
       a(href=url(table))= table.alias
     li.active= __("Edit")
-  if error
-    .alert.alert-danger.alert-dismissable
-      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-      |#{error}
+  include alert
   form.form-horizontal(method="POST", enctype="multipart/form-data", action=url(table, data), role="form")
     input(type="hidden", name="_method", value="PUT")
     input(type="hidden", name="_referrer", value=_referrer)
@@ -26,6 +23,6 @@ block content
         if allow
           button.btn.btn-primary(type="submit")= __("Update")
           | &nbsp;&nbsp;&nbsp;&nbsp;
-          button.btn.btn-default.back(type="button")= __("Cancel")
+          a.btn.btn-default.back(href=_referrer || url(table))= __("Cancel")
         else
-          button.btn.btn-default.back(type="button")= __("Back")
+          a.btn.btn-default.back(href=_referrer || url(table))= __("Back")

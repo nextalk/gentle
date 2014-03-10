@@ -6,18 +6,11 @@ block content
     li
       a(href=url("/"))= __("Index")
     li.active= table.alias
-  if success
-    .alert.alert-success.alert-dismissable
-      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-      |#{success}
-  if error
-    .alert.alert-danger.alert-dismissable
-      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-      |#{error}
+  include alert
   .btn-toolbar.clearfix(role="toolbar", style="")
     if table.permit("create")
       .btn-group.pull-left
-        a.btn.btn-default(href=url(table, "new"))
+        a.btn.btn-default(href=url(table, "new", params))
           span.glyphicon.glyphicon-plus
           span= __("New")
     if table.search()

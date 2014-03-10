@@ -9,7 +9,7 @@
 	"Update": "更新",
 	"Update `%s` success": "更新 `%s` 成功",
 	"New": "新增",
-	"Create": "创建",
+	"Create": "保存",
 	"Create `%s` success": "新增 `%s` 成功",
 	"Confirm delete ?": "确定删除？",
 	"Delete `%s` success": "删除 `%s` 成功",
@@ -18,5 +18,6 @@
 	"Logout": "退出",
 	"Username": "用户名",
 	"Password": "密码",
-	"Back": "Back"
+	"Back": "返回",
+	"%s and continue": "%s并继续添加"
 }
