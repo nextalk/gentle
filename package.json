@@ -12,6 +12,7 @@
 		"dateformat": "*",
 		"mkdirp": "*",
 		"async": "*",
+		"clone": "*",
 		"gm": "*",
 		"i18n": "*",
 		"mysql": "*",

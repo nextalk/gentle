@@ -31,13 +31,13 @@ block content
           if col.type == "select"
             .form-group
               label.sr-only= col.label
-              select.form-control(onchange="window.location.href = this.value;")
+              select.form-control(onchange="window.location.href = this.value;", disabled= col.disabled)
                 - var ob = {}
                 - ob[col.name] = undefined
                 option(value=url(table, params, ob))= __("All %s", col.label)
                 each option in col.extra
                   - ob[col.name] = option[0]
-                  option(value=url(table, params, ob), selected=params[col.name]==option[0])= option[1]
+                  option(value=url(table, params, ob), selected= conditions[col.name] == option[0] || params[col.name]==option[0])= option[1]
   if data && data.length
     form(method="get")
       include table

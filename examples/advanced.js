@@ -18,6 +18,23 @@ app.db.load(function(err, db){
 		.permit("create", false)
 		.permit("delete", false)
 
+	var admin = db.table("admin", function(table){
+		table.permit("create", "!created_at")
+			.permit("update", "!created_at")
+			.permit("display", "!created_at")
+
+		table.column("role", {
+			type: "select"
+		  , extra: [
+				[0, "Admin"]
+			  , [1, "Editor"]
+			  , [2, "Visitor"]
+			]
+		});
+
+		table.column("city_id", "Permission City").belong(city, "name");
+	});
+
 	var user = db.table("users")
 		.permit("create", false)
 		.permit("update", false)
@@ -27,6 +44,9 @@ app.db.load(function(err, db){
 		.belong(city, "name");
 
 	var post = db.table("posts", function(table){
+		table.search("title", "relation", "Search title and relation")
+			.permit("display", "!content,!publish,!price");
+
 		table.column("id");
 		table.column("pic", {
 			type: "image"
@@ -45,7 +65,7 @@ app.db.load(function(err, db){
 			.filter(user, "name", "city_id")
 			.belong(user, "name");
 
-	}).search("title", "relation", "Search title and relation");
+	});
 
 	user.column("post_num").has(post, "user_id");
 	city.column("post_num").has(post, "city_id");
@@ -53,6 +73,34 @@ app.db.load(function(err, db){
 	city.column("user_num").has(user);
 
 });
+
+
+//Custom set db schema for per request
+app.db.per = function(db, req, res, next){
+	var currentUser = req.currentUser || {
+		role: 1
+	  , city_id: 1
+	};
+	if(currentUser.role == 1){
+		//Editor
+		db.permit("manage", "!admin");
+		db.table("cities").permit("update", 0);
+	}else if(currentUser.role == 2){
+		//Visitor
+		db.permit("manage", "!admin");
+		db.permit("update", "!cities,!posts");
+		db.table("posts").permit("create", 0);
+	}
+	if(currentUser.city_id) {
+		db.permit("manage", "!cities");
+		var cond = { 
+			city_id: currentUser.city_id 
+		};
+		db.table("users").conditions(cond);
+		db.table("posts").conditions(cond);
+	}
+	next();
+}
 
 var myapp = express();
 
