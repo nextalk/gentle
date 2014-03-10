@@ -9,14 +9,14 @@ table.table.table-striped.table-bordered
               if sort.name == column.name
                 a(href=url(table,params,{sort:{name: sort.name, asc: !sort.asc}}))
                   if sort.asc
-                    span.fa.fa-sort-asc
+                    span.glyphicon.glyphicon-sort-by-attributes
                   else
-                    span.fa.fa-sort-desc
+                    span.glyphicon.glyphicon-sort-by-attributes-alt
                   |&nbsp;
                   = column.label
               else
                 a(href=url(table,params,{sort:column.name}))
-                  span.fa.fa-sort
+                  span.glyphicon.glyphicon-sort
                   |&nbsp;
                   = column.label
           else
