@@ -13,6 +13,10 @@ block content
         a.btn.btn-default(href=url(table, "new", params))
           span.glyphicon.glyphicon-plus
           span= __("New")
+    if table.hasMultiAction()
+      .btn-group.pull-left
+        each action in table.multiActions()
+          button.btn.btn-default.multi-action(type="button",value=url(table, action.name))= action.alias
     if table.search()
       form.pull-left.form-inline.col-sm-3(method="GET", action=url(table))
         .form-group
@@ -39,7 +43,7 @@ block content
                   - ob[col.name] = option[0]
                   option(value=url(table, params, ob), selected= conditions[col.name] == option[0] || params[col.name]==option[0])= option[1]
   if data && data.length
-    form(method="get")
+    form.multi-form(method="get", data-empty-notice=__("Please select data at first."))
       include table
   else
     p.bg-info(style="padding:15px;") Empty data

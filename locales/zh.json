@@ -19,5 +19,8 @@
 	"Username": "用户名",
 	"Password": "密码",
 	"Back": "返回",
-	"%s and continue": "%s并继续添加"
+	"%s and continue": "%s并继续添加",
+	"actions": "actions",
+	"Please select data at first.": "请先选择数据",
+	"%s `%s` success": "%s `%s` 成功"
 }

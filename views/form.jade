@@ -1,7 +1,14 @@
 mixin label(column, data)
   .form-group
-    label.control-label= column.label
-    p.form-control-static= data[column.name]
+    label.control-label.col-sm-3 &nbsp;
+    .col-sm-5
+      p.form-control-static
+      if Array.isArray(data)
+        each row in data
+          span.label.label-info= row[column.name]
+          | &nbsp;&nbsp;
+      else
+        span.label.label-info= data[column.name]
 
 mixin input(column, type, value, step, accept)
   .form-group

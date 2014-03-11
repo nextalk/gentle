@@ -45,9 +45,12 @@ app.db.load(function(err, db){
 
 	var post = db.table("posts", function(table){
 		table.search("title", "relation", "Search title and relation")
-			.permit("display", "!content,!publish,!price");
+			.permit("display", "!content,!price")
+			.permit("create", "!publish,!post_to,!post_date,!post_time,!retry")
+			.permit("update", "!publish,!post_to,!post_date,!post_time,!retry");
 
 		table.column("id");
+		table.column("publish", "Pub");
 		table.column("pic", {
 			type: "image"
 		  , extra:{
@@ -65,6 +68,37 @@ app.db.load(function(err, db){
 			.filter(user, "name", "city_id")
 			.belong(user, "name");
 
+		table.action("publish", "Pub", {
+			display: "title"
+		  , columnNames: "publish"
+		  , submit: "Save"
+		});
+
+		table.action("post", "Post", {
+			display: "title"
+		  , columnNames: "post_to,post_date,post_time,retry"
+		  , submit: "Save"
+		}, function(req, res, done){
+			req.table.update(req.param("id"), req.body, function(err){
+				done(err);
+			});
+		});
+
+		table.multiAction("publish", "Pub", {
+			display: "title"
+		  , columnNames: "publish"
+		  , submit: "Save"
+		});
+
+		table.multiAction("post", "Post", {
+			display: "title"
+		  , columnNames: "post_to,post_date,post_time,retry"
+		  , submit: "Save"
+		}, function(req, res, done){
+			req.table.update(req.param("id"), req.body, function(err){
+				done(err);
+			});
+		});
 	});
 
 	user.column("post_num").has(post, "user_id");
@@ -78,8 +112,8 @@ app.db.load(function(err, db){
 //Custom set db schema for per request
 app.db.per = function(db, req, res, next){
 	var currentUser = req.currentUser || {
-		role: 1
-	  , city_id: 1
+//		role: 1
+//	  , city_id: 1
 	};
 	if(currentUser.role == 1){
 		//Editor

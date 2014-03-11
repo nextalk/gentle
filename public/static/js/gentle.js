@@ -35,27 +35,32 @@ function formHelper( $wrap ) {
 	});
 }
 
+function listHelper( $wrap ){
+	$wrap = $($wrap);
+	var  $ids = $wrap.find(".multi-form tr td input:checkbox[name^=id]")
+	  , $form = $wrap.find(".multi-form");
+
+	$wrap.find(".multi-form tr th:eq(0) input:checkbox").click(function(){
+		var checked = this.checked; 
+		$ids.each(function(){
+			this.checked = checked;
+		});
+	});
+	$wrap.find(".multi-action").click(function(){
+		$form.attr("action", this.value).submit();	
+	});
+	$form.submit( function(){
+		var $ids = $wrap.find(".multi-form tr td input:checkbox[name^=id]:checked");
+		if( !$ids.length ) {
+			alert( $form.attr("data-empty-notice") || "Please select data at first." );
+			return false;
+		}
+	});
+}
+
 (function(){
 	//$("textarea.ueditor").each(function(){
 	//	UE.getEditor(this, { initialFrameWidth: 600, initialContent: "" });
-	//});
-
-	//var $ids = $(".multi-form tr td input:checkbox[name^=ids]");
-	//$(".multi-form tr th:eq(0) input:checkbox").click(function(){
-	//	var checked = this.checked; 
-	//	$ids.each(function(){
-	//		this.checked = checked;
-	//	});
-	//});
-	//$(".multi-action").click(function(){
-	//	$(".multi-form").attr("action", this.value).submit();	
-	//});
-	//$(".multi-form").submit( function(){
-	//	var $ids = $(".multi-form tr td input:checkbox[name^=ids]:checked");
-	//	if( !$ids.length ) {
-	//		alert( "请先选择数据" );
-	//		return false;
-	//	}
 	//});
 
 	//$(".truncate").popover({placement: "top", html: true});
@@ -70,6 +75,7 @@ function formHelper( $wrap ) {
 	//	});
 	//	return false;
 	//});
+	listHelper( document );
 	formHelper( document );
 
 	//$(".daterange").each(function(){

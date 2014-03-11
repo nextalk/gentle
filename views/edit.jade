@@ -11,6 +11,10 @@ block content
       a(href=url(table))= table.alias
     li.active= __("Edit")
   include alert
+  if table.hasAction()
+     .btn-group
+       each action in table.actions()
+         a.btn.btn-default(href=url(table, data, action.name))= action.alias
   form.form-horizontal(method="POST", enctype="multipart/form-data", action=url(table, data), role="form")
     input(type="hidden", name="_method", value="PUT")
     input(type="hidden", name="_referrer", value=_referrer)

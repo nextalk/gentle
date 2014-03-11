@@ -9,7 +9,7 @@ mixin del(uri)
     a(href=uri, onclick="if(confirm('"+__("Confirm delete ?")+"')){ $('<form action='+this.href+' method=POST ><input type=hidden name=_method value=DELETE /></form>').submit(); };return false;")
       span.glyphicon.glyphicon-remove
 mixin link(content, table, p1, p2, p3, p4)
-  a(href= url(table, p1, p2, p3))= content
+  a(href= url(table, p1, p2, p3, p4))= content
 
 mixin f-datetime(date)
   if date
@@ -32,6 +32,12 @@ mixin f-label(content, type, footer)
     span.label.label-default= content
   != footer
 
+mixin f-bool(content)
+  if content
+    = __("Yes")
+  else
+    = __("No")
+
 mixin f-raw(content)
   != content
 
@@ -48,6 +54,8 @@ mixin format(ar)
         +f-date(ar[1], ar[2], ar[3], ar[4], ar[5])
       when 'time'
         +f-time(ar[1], ar[2], ar[3], ar[4], ar[5])
+      when 'bool'
+        +f-bool(ar[1])
       when 'raw'
         +f-raw(ar[1], ar[2], ar[3], ar[4], ar[5])
       default

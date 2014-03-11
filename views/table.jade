@@ -1,7 +1,14 @@
 - var sort = table.sort()
+- var hasAction = table.hasAction()
+- var hasMultiAction = table.hasMultiAction()
+- var key = table.primaryKey()
+- var deleteable = table.permit("delete")
 table.table.table-striped.table-bordered
   thead
     tr
+      if hasMultiAction
+        th
+          input(type="checkbox")
       each column in table.columns()
         if column.permit("display")
           if column.permit("sort")
@@ -21,18 +28,30 @@ table.table.table-striped.table-bordered
                   = column.label
           else
             th= column.label
+      if hasAction
+        th= __("actions")
   tbody
     each row in data
       tr
+        if hasMultiAction
+          td 
+            if deleteable
+              mixin del(url(table, row))
+            input(type="checkbox", name="id", value=row[key])
         each column in table.columns()
           if column.permit("display")
             if column.primary
               td
-                if table.permit("delete")
+                if !hasMultiAction && deleteable
                   mixin del(url(table, row))
                 a(href=url(table, row))= row[column.name]
             else
               td
                 mixin format(column.format(row[column.name], row))
+        if hasAction
+          td
+            each action in table.actions()
+              +link(action.alias, table, row, action.name)
+              br
 
 
