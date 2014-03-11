@@ -11,9 +11,9 @@ html(lang='en')
     title
       block title
       = brand_name
-    mixin css("base.min.css")
-    mixin css("bootstrap-theme.css")
-    mixin css("gentle.css")
+    +css("base.min.css")
+    +css("bootstrap-theme.css")
+    +css("gentle.css")
     block style
     style.
       body{padding-top: 70px;padding-bottom:30px;}
@@ -44,6 +44,28 @@ html(lang='en')
       hr
       .footer
         p &copy; #{brand_name} 2014
-    mixin script('base.min.js')
-    mixin script('locales/bootstrap-datetimepicker.zh-CN.js')
-    mixin script('gentle.js')
+    #blueimp-gallery.blueimp-gallery
+      .slides
+      h3.title
+      a.prev ‹
+      a.next ›
+      a.close &times;
+      a.play-pause
+      ol.indicator
+      .modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              .button.close(type="button", aria-hidden="true") &times;
+              h4.modal-title
+            .modal-body.next
+            .modal-footer
+              button.btn.btn-default.pull-left.prev(type="button")
+                i.glyphicon.glyphicon-chevron-left
+                = __("Previous")
+              button.btn.btn-primary.pull.next(type="button")
+                = __("Next")
+                i.glyphicon.glyphicon-chevron-right
+    +script('base.min.js')
+    +script('locales/bootstrap-datetimepicker.zh-CN.js')
+    +script('gentle.js')

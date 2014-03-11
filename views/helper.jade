@@ -1,9 +1,9 @@
 mixin test
   div Test mixin
 mixin css(src)
-  link(href=url("/static/css/"+src), rel='stylesheet')
+  link(href=attributes.src || url("/static/css/"+src), rel='stylesheet')
 mixin script(src)
-  script(src=url('/static/js/'+src), type='text/javascript')
+  script(src=attributes.src || url('/static/js/'+src), type='text/javascript')
 mixin del(uri)
   .del
     a(href=uri, onclick="if(confirm('"+__("Confirm delete ?")+"')){ $('<form action='+this.href+' method=POST ><input type=hidden name=_method value=DELETE /></form>').submit(); };return false;")
@@ -24,6 +24,18 @@ mixin f-date(date)
 mixin f-time(time)
   if time
     = time.split(":").slice(0, 2).join(":")
+
+mixin f-image(src, alt, thumbnail)
+  if src
+    a.image(href=url((uploadPath.image || (uploadPath + "images/"))+src), title=alt||src, data-gallery)
+      if thumbnail
+        img(alt=alt, src=url((uploadPath.image || (uploadPath + "images/"))+thumbnail))
+      else
+        = src
+
+mixin f-file(src)
+  if src
+    a.file(href=url((uploadPath.file || (uploadPath + "files/")))+src)= src
 
 mixin f-label(content, type, footer)
   if type
@@ -56,6 +68,10 @@ mixin format(ar)
         +f-time(ar[1], ar[2], ar[3], ar[4], ar[5])
       when 'bool'
         +f-bool(ar[1])
+      when 'image'
+        +f-image(ar[1], ar[2])
+      when 'file'
+        +f-file(ar[1], ar[2])
       when 'raw'
         +f-raw(ar[1], ar[2], ar[3], ar[4], ar[5])
       default

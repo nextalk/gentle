@@ -15,6 +15,8 @@ module.exports = function( grunt ) {
 					"components/jquery/jquery.js",
 					"components/bootstrap/dist/js/bootstrap.js",
 					"components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js",
+					"components/Gallery/js/jquery.blueimp-gallery.min.js",
+					"components/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.js",
 					//"components/bootstrap-modal/js/bootstrap-modalmanager.js",
 					//"components/bootstrap-modal/js/bootstrap-modal.js",
 				],
@@ -24,6 +26,8 @@ module.exports = function( grunt ) {
 				src: [
 					"components/bootstrap/dist/css/bootstrap.css",
 					"components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css",
+					"components/Gallery/css/blueimp-gallery.css",
+					"components/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.css",
 					//"components/bootstrap-modal/css/bootstrap-modal-bs3patch.css",
 					//"components/bootstrap-modal/css/bootstrap-modal.css",
 					//"components/Font-Awesome/css/font-awesome.css"
@@ -82,7 +86,19 @@ module.exports = function( grunt ) {
 				cwd: "components/bootstrap-datetimepicker/js/",
 				src: ["locales/*"],
 				dest: 'public/static/js'
-			}
+			},
+			"gallery":{
+				expand: true,
+				cwd: "components/Gallery/",
+				src: ["img/*"],
+				dest: 'public/static/'
+			},
+			"bootstrap-gallery":{
+				expand: true,
+				cwd: "components/Bootstrap-Image-Gallery/",
+				src: ["img/*"],
+				dest: 'public/static/'
+			},
 		},
 
 	});

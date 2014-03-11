@@ -13,3 +13,9 @@
 [submodule "components/bootstrap-modal"]
 	path = components/bootstrap-modal
 	url = https://github.com/jschr/bootstrap-modal.git
+[submodule "components/Bootstrap-Image-Gallery"]
+	path = components/Bootstrap-Image-Gallery
+	url = https://github.com/blueimp/Bootstrap-Image-Gallery.git
+[submodule "components/Gallery"]
+	path = components/Gallery
+	url = https://github.com/blueimp/Gallery.git
