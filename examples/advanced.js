@@ -111,7 +111,8 @@ app.db.load(function(err, db){
 
 
 //Custom set db schema for per request
-app.db.per = function(db, req, res, next){
+app.db.per = function(req, res, next){
+	var db = req.db;
 	var currentUser = req.currentUser || {
 //		role: 1
 //	  , city_id: 1

@@ -1,9 +1,9 @@
 mixin test
   div Test mixin
 mixin css(src)
-  link(href=attributes.src || url("/static/css/"+src), rel='stylesheet')
+  link(href=attributes.src || surl("/static/css/"+src), rel='stylesheet')
 mixin script(src)
-  script(src=attributes.src || url('/static/js/'+src), type='text/javascript')
+  script(src=attributes.src || surl('/static/js/'+src), type='text/javascript')
 mixin del(uri)
   .del
     a(href=uri, onclick="if(confirm('"+__("Confirm delete ?")+"')){ $('<form action='+this.href+' method=POST ><input type=hidden name=_method value=DELETE /></form>').submit(); };return false;")
@@ -27,7 +27,7 @@ mixin f-time(time)
 
 mixin f-image(src, alt, thumbnail)
   if src
-    a.image(href=url((uploadPath.image || (uploadPath + "images/"))+src), title=alt||src, data-gallery)
+    a.image(href=surl((uploadPath.image || (uploadPath + "images/"))+src), title=alt||src, data-gallery)
       if thumbnail
         img(alt=alt, src=url((uploadPath.image || (uploadPath + "images/"))+thumbnail))
       else
