@@ -59,6 +59,17 @@ mixin checkgroup(column, value)
             span= option[1]
       span.help-block= column.help
 
+mixin radio(column, value)
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      if column.extra
+        for option in column.extra
+          label.radio-inline
+            input(type="radio", name=column.name, value=option[0], checked= value==(''+option[0]) ? true : undefined, disabled= column.disabled)
+            span= option[1]
+      span.help-block= column.help
+
 mixin bool(column, value)
   .form-group
     label.control-label.col-sm-3(for=column.name)= column.label
@@ -111,6 +122,8 @@ mixin form(column, value)
       mixin select(column, value)
     when 'checkgroup'
       mixin checkgroup(column, value)
+    when 'radio'
+      mixin radio(column, value)
     when 'file'
       mixin file(column, value)
     when 'image'
