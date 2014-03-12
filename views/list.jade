@@ -46,6 +46,6 @@ block content
     form.multi-form(method="get", data-empty-notice=__("Please select data at first."))
       include table
   else
-    p.bg-info(style="padding:15px;") Empty data
+    p.bg-info(style="padding:15px;")= __("Empty data")
   if data && data.length
     include pager
