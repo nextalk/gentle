@@ -14,7 +14,7 @@ block content
     input(type="hidden", name="_method", value="POST")
     input(type="hidden", name="_referrer", value=_referrer)
     each column in table.columns()
-      if !column.primary && column.permit("update")
+      if !column.primary && column.permit("create")
         mixin form(column, (params || {})[column.name])
     .form-group
       .col-sm-offset-3.col-sm-5
