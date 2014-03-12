@@ -56,6 +56,7 @@ app.db.load(function(err, db){
 		  , extra:{
 			  quality: [30, 60]
 			, box: [[50, 50], [200, 150]]
+			, rename: "byDate"
 			}
 		});
 		table.column("title", {
