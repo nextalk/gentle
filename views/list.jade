@@ -32,7 +32,7 @@ block content
     form.pull-left.form-inline
       each col in table.columns()
         if col.permit("filter")
-          if col.type == "select"
+          if col.type == "select" || col.type == "radio"
             .form-group
               label.sr-only= col.label
               select.form-control(onchange="window.location.href = this.value;", disabled= col.disabled)
