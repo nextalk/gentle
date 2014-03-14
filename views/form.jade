@@ -53,9 +53,10 @@ mixin checkgroup(column, value)
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
       if column.extra
+        - var val = value && (''+value).split(',')
         for option in column.extra
           label.checkbox-inline
-            input(type="checkbox", name=column.name, value=option[0], checked= value && value.indexOf(option[0]) != -1 ? true : undefined, disabled= column.disabled)
+            input(type="checkbox", name=column.name, value=option[0], checked= val.indexOf(''+option[0]) != -1 ? true : undefined, disabled= column.disabled)
             span= option[1]
       span.help-block= column.help
 
