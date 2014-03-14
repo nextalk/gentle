@@ -25,7 +25,7 @@ html(lang='en')
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             each t in db.tables()
-              if(t.permit("manage"))
+              if t.permit("manage") && t.permit("nav")
                 li(class = table && t.name == table.name ? "active" : undefined)
                   a(href=url(t))= t.alias
           ul.nav.navbar-nav.navbar-right

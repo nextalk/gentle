@@ -40,7 +40,7 @@ app.db.load(function(err, db){
 		.permit("update", false)
 		.permit("delete", false)
 	user.column("city_id")
-		.filter(city, "name")
+		.select(city, "name")
 		.belong(city, "name");
 
 	var post = db.table("posts", function(table){
@@ -63,10 +63,10 @@ app.db.load(function(err, db){
 			value: "Title"
 		});
 		table.column("city_id")
-			.filter(city, "name")
+			.select(city, "name")
 			.belong(city, "name");
 		table.column("user_id")
-			.filter(user, "name", "city_id")
+			.select(user, "name", "city_id")
 			.belong(user, "name");
 
 		table.action("publish", "Pub", {
