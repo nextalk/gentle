@@ -14,7 +14,15 @@ mixin input(column, type, value, step, accept)
   .form-group
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
-      input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step, accept=accept)
+      if column.config("prefix") || column.config("suffix")
+        .input-group
+          if column.config("prefix")
+            span.input-group-addon= column.config("prefix")
+          input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step, accept=accept)
+          if column.config("suffix")
+            span.input-group-addon= column.config("suffix")
+      else
+        input(class= type=="file" ? undefined : "form-control", type=type, id=column.name, name=column.name, value=value, disabled= column.disabled, step=step, accept=accept)
       span.help-block= column.help
 
 mixin _datetime(column, value, timeType, format)
