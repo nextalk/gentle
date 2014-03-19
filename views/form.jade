@@ -42,7 +42,7 @@ mixin textarea(column, value, isHtml)
   .form-group
     label.control-label.col-sm-3(for=column.name)= column.label
     .col-sm-5
-      textarea(class=isHtml ? "editor form-control" : "form-control", rows=4, id=column.name, name=column.name, value=value, disabled= column.disabled)
+      textarea(class=isHtml ? "editor form-control" : "form-control", rows=4, id=column.name, name=column.name, disabled= column.disabled)= value
       span.help-block= column.help
 
 mixin select(column, value)
