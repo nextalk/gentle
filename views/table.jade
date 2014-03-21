@@ -51,7 +51,10 @@ table.table.table-striped.table-bordered
         if hasAction
           td
             each action in table.actions()
-              +link(action.alias, table, row, action.name)
+              if action.config("post")
+                +post(action.alias, url(table, row, action.name))
+              else
+                +link(action.alias, table, row, action.name)
               br
 
 

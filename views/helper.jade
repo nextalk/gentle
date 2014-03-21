@@ -8,6 +8,10 @@ mixin del(uri)
   .del
     a(href=uri, onclick="if(confirm('"+__("Confirm delete ?")+"')){ $('<form action='+this.href+' method=POST ><input type=hidden name=_method value=DELETE /></form>').submit(); };return false;")
       span.glyphicon.glyphicon-remove
+
+mixin post(content, uri)
+  a(href=uri, onclick="if(confirm('"+__("Confirm ?")+"')){ $('<form action='+this.href+' method=POST ></form>').submit(); };return false;")= content
+
 mixin link(content, table, p1, p2, p3, p4)
   a(href= url(table, p1, p2, p3, p4))= content
 
