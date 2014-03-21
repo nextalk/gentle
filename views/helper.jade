@@ -29,11 +29,11 @@ mixin f-time(time)
   if time
     = time.split(":").slice(0, 2).join(":")
 
-mixin f-image(src, alt, thumbnail)
+mixin f-image(src, alt, thumbnail, height)
   if src
-    a.image(href=surl((uploadPath.image || (uploadPath + "images/"))+src), title=alt||src, data-gallery)
+    a.image(href=surl((/https?:/.test(src) ? "" : (uploadPath.image || (uploadPath + "images/"))) +src), title=alt||src, data-gallery)
       if thumbnail
-        img(alt=alt, src=url((uploadPath.image || (uploadPath + "images/"))+thumbnail))
+        img(alt=alt, src=url((/https?:/.test(thumbnail) ? "" : (uploadPath.image || (uploadPath + "images/")))+thumbnail), height=height)
       else
         = src
 
