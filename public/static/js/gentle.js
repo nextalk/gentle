@@ -40,6 +40,8 @@ function listHelper( $wrap ){
 	var  $ids = $wrap.find(".multi-form tr td input:checkbox[name^=id]")
 	  , $form = $wrap.find(".multi-form");
 
+	$wrap.find(".truncate").popover({placement: "top", html: true});
+
 	$wrap.find(".multi-form tr th:eq(0) input:checkbox").click(function(){
 		var checked = this.checked; 
 		$ids.each(function(){
@@ -63,7 +65,6 @@ function listHelper( $wrap ){
 	//	UE.getEditor(this, { initialFrameWidth: 600, initialContent: "" });
 	//});
 
-	//$(".truncate").popover({placement: "top", html: true});
 
 	//var $modal = $('<div class="modal hide fade"></div>').appendTo("body");
 	//$("a.ajax").click(function(){
