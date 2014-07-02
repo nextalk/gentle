@@ -105,7 +105,14 @@ mixin file(column, value)
   mixin input(column, "file", value)
 
 mixin image(column, value)
-  mixin input(column, "file", value, undefined, "image/*")
+  .form-group
+    label.control-label.col-sm-3(for=column.name)= column.label
+    .col-sm-5
+      input(type="file", id=column.name, name=column.name, value=value, disabled= column.disabled, accept="image/*")
+      span.help-block= column.help
+      .preview
+        if value
+          img(alt=alt, src=url((/https?:/.test(value) ? "" : (uploadPath.image || (uploadPath + "images/")))+value), width=300)
 
 mixin html(column, value)
   mixin textarea(column, value, 1)
